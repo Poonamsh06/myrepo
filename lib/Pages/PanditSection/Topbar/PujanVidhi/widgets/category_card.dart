@@ -23,10 +23,10 @@ class CategoryCard extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(13),
       child: Container(
-        // padding: EdgeInsets.all(20),
+        padding: EdgeInsets.all(20),
         decoration: BoxDecoration(
           //color: Color(int.parse('$clr')),
-          color: Colors.white,
+          color: Color(0xffFFFAF3),
           borderRadius: BorderRadius.circular(13),
           boxShadow: [
             BoxShadow(
@@ -39,7 +39,7 @@ class CategoryCard extends StatelessWidget {
         ),
         child: Material(
           color: Colors.transparent,
-          child: InkWell(
+          child: GestureDetector(
             onTap: (){
               press!();
             },

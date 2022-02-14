@@ -343,7 +343,7 @@ class TopTabs extends StatelessWidget{
     return Container(
             padding: EdgeInsets.all(10),
             decoration: BoxDecoration(
-              //  color: Colors.white,
+              //color: Color(0xffFFFAF3),
                 borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20),bottomRight: Radius.circular(20))
             ),
             width: width,

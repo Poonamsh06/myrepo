@@ -134,7 +134,7 @@ class _NewPanditHomeState extends State<NewPanditHome> {
                                List<Widget> imageSliders = imgList.map((item) => Container(height:200,width:100,child: Image.network(item, fit: BoxFit.cover,)),).toList();
                                List<Widget> sliders = [];                             
                                for(var i in snapshot.data!.docs){
-                                 final imageData = slideroffers(context, height, width,i.get('link'),i.get('image'),);
+                                 final imageData = sliderOffers(context, height, width,i.get('link'),i.get('image'),);
                                  sliders.add(imageData);                                      }
                              
                                return CarouselSlider(
@@ -166,7 +166,7 @@ class _NewPanditHomeState extends State<NewPanditHome> {
                              shrinkWrap: true,
                              itemCount: upcomingController.upcomingList.value!.length,
                              itemBuilder: (_, index) {
-                               return scollImage(upcomingController.upcomings![index].link!,width,height,upcomingController.upcomings![index].image!,context);
+                               return scrollImage(upcomingController.upcomings![index].link!,width,height,upcomingController.upcomings![index].image!,context);
                              },
                            );
                          } else {
@@ -236,7 +236,7 @@ class _NewPanditHomeState extends State<NewPanditHome> {
 }
 
 
-Widget slideroffers(BuildContext context, double height, double width,String link,String img) {
+Widget sliderOffers(BuildContext context, double height, double width,String link,String img) {
     return Link(
       target:LinkTarget.blank,
       uri: Uri.parse('$link'),
@@ -265,7 +265,7 @@ Widget slideroffers(BuildContext context, double height, double width,String lin
   }
 
  
-  Widget scollImage(String link,double width,double height,String image,BuildContext context) {
+  Widget scrollImage(String link,double width,double height,String image,BuildContext context) {
     
     return Link(
      //ri: Uri.parse('http://localhost:50183/#/detail?detail=$link'), 

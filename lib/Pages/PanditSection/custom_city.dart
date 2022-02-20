@@ -88,7 +88,7 @@ class CustomCity extends StatelessWidget{
                             shrinkWrap: true,                            
                             itemCount: cityController.userModel.value.pujas!.length,
                             itemBuilder: (_,index){
-                              return popular_puja("${cityController.userModel.value.pujas![index]['name']}","#satyanarayan");
+                              return popularPuja("${cityController.userModel.value.pujas![index]['name']}","#satyanarayan");
                             }),
                          
                         ],
@@ -152,7 +152,7 @@ class CustomCity extends StatelessWidget{
     );
   }
 
-  Padding popular_puja(String puja,String keyword) {
+  Padding popularPuja(String puja,String keyword) {
     return Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: InkWell(

@@ -8,7 +8,7 @@ class PujanVidhiModel {
   var avgDuration;
   var bg;
   var state;
-  List<Samagriss>? samagris;
+  List<Samagiri>? samagris;
   var keyword;
 
   PujanVidhiModel({this.bg,this.image,this.name,this.avgDuration,this.description,this.state,this.samagris,this.keyword,});

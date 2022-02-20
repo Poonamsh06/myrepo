@@ -26,7 +26,7 @@ class Account extends StatelessWidget{
         'subject': 'Feedback'
       }
   );
-  void sendlauncher()async{
+  void sendLauncher()async{
     await launch(_emailLaunchUri.toString());
   }
   @override
@@ -114,7 +114,7 @@ class Account extends StatelessWidget{
                         ),
                         ListTile(
                           onTap: (){
-                            sendlauncher();
+                            sendLauncher();
                           },
                           title: Text('Send Feedback',style: TextStyle(color: Colors.black,)),
                         ),

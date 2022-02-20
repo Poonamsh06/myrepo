@@ -180,7 +180,7 @@ class _PanditHomeState extends State<PanditHome> {
                                List<Widget> imageSliders = imgList.map((item) => Container(height:200,width:100,child: Image.network(item, fit: BoxFit.cover,)),).toList();
                                List<Widget> sliders = [];                             
                                for(var i in snapshot.data!.docs){
-                                 final imageData = slideroffers(context, height, width,i.get('link'),i.get('image'),);
+                                 final imageData = sliderOffers(context, height, width,i.get('link'),i.get('image'),);
                                  sliders.add(imageData);                                      }
                              
                                return CarouselSlider(
@@ -212,7 +212,7 @@ class _PanditHomeState extends State<PanditHome> {
                              shrinkWrap: true,
                              itemCount: upcomingController.upcomingList.value!.length,
                              itemBuilder: (_, index) {
-                               return scollImage(upcomingController.upcomings![index].link!,width,height,upcomingController.upcomings![index].image!,context);
+                               return scrollImage(upcomingController.upcomings![index].link!,width,height,upcomingController.upcomings![index].image!,context);
                              },
                            );
                          } else {
@@ -341,7 +341,7 @@ class _PanditHomeState extends State<PanditHome> {
 
 }
 
-  Widget slideroffers(BuildContext context, double height, double width,String link,String img) {
+  Widget sliderOffers(BuildContext context, double height, double width,String link,String img) {
     return Link(
       target:LinkTarget.blank,
       uri: Uri.parse('$link'),
@@ -369,7 +369,7 @@ class _PanditHomeState extends State<PanditHome> {
     );
   }
 
-  Widget Topbar(String name, String image,String tap) {
+  Widget topBar(String name, String image,String tap) {
     return Link(
       //uri:  Uri.parse('http://pujapurohit.netlify.app/#/$tap'),
        uri: Uri.parse('http://pujapurohit.in/#/$tap'),
@@ -402,7 +402,7 @@ class _PanditHomeState extends State<PanditHome> {
     );
   }
 
-  Widget scollImage(String link,double width,double height,String image,BuildContext context) {
+  Widget scrollImage(String link,double width,double height,String image,BuildContext context) {
     
     return Link(
      // uri: Uri.parse('http://pujapurohit.netlify.app/#/detail?id=$link'), 
@@ -646,18 +646,18 @@ Widget rating(){
     int? rates = bModal.raters;
     double? overall_rate=swastik!/rates!;
     if(overall_rate!>=4){
-      return newrate(overall_rate,Colors.green);
+      return newRate(overall_rate,Colors.green);
     }
     if(overall_rate >=3 && overall_rate<4){
-      return  newrate(overall_rate,Colors.orangeAccent);
+      return  newRate(overall_rate,Colors.orangeAccent);
     }
-   return  newrate(overall_rate>=0?bModal.swastik!:0, Colors.green);
+   return  newRate(overall_rate>=0?bModal.swastik!:0, Colors.green);
 
  
    
 }
 
-  Container newrate(double overall_rate,Color clr) {
+  Container newRate(double overall_rate,Color clr) {
     return Container(
       decoration: BoxDecoration(
         color: clr,

@@ -59,7 +59,7 @@ class _ImageViewState extends State<ImageView> {
     if (byteData != null) {
       final result =
       await ImageGallerySaver.saveImage(byteData.buffer.asUint8List());
-      print(result);
+
 
       if (result["isSuccess"] == true) {
         loadController.updateLoad();
@@ -83,7 +83,7 @@ class _ImageViewState extends State<ImageView> {
   //   ].request();
 
   //   final info = statuses[Permission.storage].toString();
-  //   print(info);
+
   //   // _toastInfo(info);
   // }
   @override

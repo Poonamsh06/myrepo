@@ -69,7 +69,7 @@ class _VaratState extends State<Varat> {
                               itemBuilder: (_, index) {
                                 List<dynamic> content = articles[index]['content'];
                                 List<dynamic> likes = articles[index]['likes'];
-                                return ArticleCards(
+                                return articleCards(
                                     articles[index],
                                     likes,
                                     width,
@@ -98,7 +98,7 @@ class _VaratState extends State<Varat> {
                                 itemBuilder: (_, index) {
                                    List<dynamic> content = articles[index]['content'];
                                 List<dynamic> likes = articles[index]['likes'];
-                                  return ArticleCards(
+                                  return articleCards(
                                     articles[index],
                                     likes,
                                     width,
@@ -127,7 +127,7 @@ class _VaratState extends State<Varat> {
     );
   }
 
-  Column ArticleCards(
+  Column articleCards(
       dynamic articles,
       List<dynamic> likes,
       double width,
@@ -257,7 +257,7 @@ class _VaratState extends State<Varat> {
               //   children: [
               //     InkWell(
               //         onTap: () {
-              //           print('Dab rha hu');
+
               //           FirebaseFirestore.instance
               //               .doc('PujaPurohitFiles/Article')
               //               .update({
@@ -505,7 +505,7 @@ class ArticleDetail extends StatelessWidget {
                         itemCount: articleController
                             .articleData.value.contents!.length,
                         itemBuilder: (_, index) {
-                          return ArticlePara(
+                          return articlePara(
                               width,
                               height,
                               somesnaps,
@@ -534,7 +534,7 @@ class ArticleDetail extends StatelessWidget {
     );
   }
 
-  Padding ArticlePara(
+  Padding articlePara(
       double width, double height, String somesnaps, String data, String type,bool bold,BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(left: 20, right: width * 0.1, bottom: 15),

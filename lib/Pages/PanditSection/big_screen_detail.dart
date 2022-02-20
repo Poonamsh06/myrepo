@@ -327,10 +327,10 @@ class BigScreenDetailPage extends StatelessWidget{
                                   servicessWidgets.add(messWidget);
                                     
                                  }
-                                 print(servicessWidgets.length);
+
                                  _.updateItems(servicessWidgets.length);
                                  len = servicessWidgets.length;
-                                 print(len);
+
                                  return ListView(
                                    physics: NeverScrollableScrollPhysics(),
                                    shrinkWrap: true,
@@ -383,7 +383,7 @@ class BigScreenDetailPage extends StatelessWidget{
                InkWell(
                 onTap: (){
                   _.updateSelected("$name");
-                  print('${detailSideMenu.select.value.selected}');
+
                 },
                 child: Obx((){
                   return  Text1(max: 12, data: "$name", min: 11,clr:detailSideMenu.select.value.selected == "$name"?Colors.orangeAccent:Colors.black54);

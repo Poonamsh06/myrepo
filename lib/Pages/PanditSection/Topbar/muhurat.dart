@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class Muhurat extends StatelessWidget{
+class Mahurat extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Scaffold();

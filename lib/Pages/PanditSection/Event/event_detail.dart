@@ -234,7 +234,7 @@ class _EventDetailState extends State<EventDetail> {
                     physics: NeverScrollableScrollPhysics(),
                     itemCount: snaps.length,
                     itemBuilder: (_,index){
-                      return VotersCard(snaps, index,height);
+                      return votersCard(snaps, index,height);
                     }): GridView.builder(
                                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(  
                                           crossAxisCount: ResponsiveWidget.isMediumScreen(context)?2:4,
@@ -247,7 +247,7 @@ class _EventDetailState extends State<EventDetail> {
                                     shrinkWrap: true,
                                     itemCount: snaps.length,
                                     itemBuilder: (_, index) {
-                                      return VotersCard(snaps, index,height);
+                                      return votersCard(snaps, index,height);
                                     }, 
                                   );
               }
@@ -291,7 +291,7 @@ class _EventDetailState extends State<EventDetail> {
     );
   }
 
-  Column VotersCard(List<dynamic> snaps, int index,double height) {
+  Column votersCard(List<dynamic> snaps, int index,double height) {
     return Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -331,18 +331,18 @@ class _EventDetailState extends State<EventDetail> {
                                         InkWell(
                                             onTap: (){
                                               List<dynamic> voters = snapshot.data!.get("${snaps[index]['event']}V");
-                                              List<dynamic> local_voters = snaps[index]['voters'];
-                                              List<dynamic> total_V= voters;
+                                              List<dynamic> localVoters = snaps[index]['voters'];
+                                              List<dynamic> totalV= voters;
                                               voters.contains('${authController.user!.phoneNumber}')?voters.remove('${authController.user!.phoneNumber}'):(){};
 
                                               FirebaseFirestore.instance.doc("PujaPurohitFiles/events").update({
-                                                '${snaps[index]['event']}V':total_V
+                                                '${snaps[index]['event']}V':totalV
                                               });
-                                              List<dynamic> total_L= local_voters;
-                                              local_voters.contains('${authController.user!.phoneNumber}')?local_voters.remove('${authController.user!.phoneNumber}'):(){};
+                                              List<dynamic> totalL= localVoters;
+                                              localVoters.contains('${authController.user!.phoneNumber}')?localVoters.remove('${authController.user!.phoneNumber}'):(){};
 
                                               FirebaseFirestore.instance.doc("PujaPurohitFiles/events/${snaps[index]['event']}/${snaps[index]['id']}").update({
-                                                'voters':total_L,
+                                                'voters':totalL,
                                                 'votes':FieldValue.increment(-1)
                                               });
 
@@ -355,18 +355,18 @@ class _EventDetailState extends State<EventDetail> {
                                               }
                                               else{
                                                 List<dynamic> voters = snapshot.data!.get("${snaps[index]['event']}V");
-                                                List<dynamic> local_voters = snaps[index]['voters'];
-                                                List<dynamic> total_V= voters;
+                                                List<dynamic> localVoters = snaps[index]['voters'];
+                                                List<dynamic> totalV= voters;
                                                 voters.contains('${authController.user!.phoneNumber}')?(){}:voters.add('${authController.user!.phoneNumber}');
 
                                                 FirebaseFirestore.instance.doc("PujaPurohitFiles/events").update({
-                                                  '${snaps[index]['event']}V':total_V
+                                                  '${snaps[index]['event']}V':totalV
                                                 });
-                                                List<dynamic> total_L= local_voters;
-                                                local_voters.contains('${authController.user!.phoneNumber}')?(){}:local_voters.add('${authController.user!.phoneNumber}');
+                                                List<dynamic> totalL= localVoters;
+                                                localVoters.contains('${authController.user!.phoneNumber}')?(){}:localVoters.add('${authController.user!.phoneNumber}');
 
                                                 FirebaseFirestore.instance.doc("PujaPurohitFiles/events/${snaps[index]['event']}/${snaps[index]['id']}").update({
-                                                  'voters':total_L,
+                                                  'voters':totalL,
                                                   'votes':FieldValue.increment(-1)
                                                 });
 
@@ -476,7 +476,7 @@ class _EventDetailState extends State<EventDetail> {
       }
     );
   }
-  GetX<UserController> loggeduggestions(String snapshot) {
+  GetX<UserController> loggedSuggestions(String snapshot) {
     return GetX<UserController>(
       init: Get.put<UserController>(UserController()),
       builder: (UserController userController){

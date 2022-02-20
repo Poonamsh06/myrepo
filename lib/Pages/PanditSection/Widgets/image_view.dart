@@ -269,7 +269,7 @@ class _AddressPageState extends State<AddressPage> {
                                  onTap: (){
                                    
 
-                                  Get.bottomSheet(locationChnage(),enableDrag: false);
+                                  Get.bottomSheet(locationChange(),enableDrag: false);
                                  },
                                  child: Row(
                                    children: [
@@ -340,7 +340,7 @@ class _AddressPageState extends State<AddressPage> {
      ),
    );
   }
-  Container locationChnage(){
+  Container locationChange(){
     double height = Get.height;
     double width = Get.width;
     // void findPlace(String place)async{
@@ -350,8 +350,7 @@ class _AddressPageState extends State<AddressPage> {
     //     if(res == "failed"){
     //       return;
     //     }
-    //     print("Places prediction respose:");
-    //     print(res);
+
     //   }
     // }
    UserController userController = Get.put(UserController());
@@ -439,7 +438,7 @@ class Samagri extends StatelessWidget{
                                scrollDirection: Axis.vertical,
                                shrinkWrap: true,
                                itemCount: samagriController.panditList.value!.length, itemBuilder: (BuildContext context, int index) {
-                             return VendorsTile(samagriController.pandits![index],samagriController,authController);
+                             return vendorsTile(samagriController.pandits![index],samagriController,authController);
                            }
                            ),
                          ),
@@ -539,7 +538,7 @@ class Samagri extends StatelessWidget{
     );
   }
 
-  GetX<VendorController> SamagriCustomize(SamagriController samagriController) {
+  GetX<VendorController> samagriCustomize(SamagriController samagriController) {
     return GetX<VendorController>(
                        init: Get.put(VendorController(uid: samagriController.select.value.vendoruid!)),
                        builder: (VendorController vendorController){
@@ -585,7 +584,7 @@ class Samagri extends StatelessWidget{
                      );
   }
 
-  Widget VendorsTile(VendorModal vendorModal,SamagriController samagriController,AuthController authController){
+  Widget vendorsTile(VendorModal vendorModal,SamagriController samagriController,AuthController authController){
     String keyword = '#${Get.parameters['keyword']}';
     final UserController userController = Get.put(UserController());
     GeoPoint geoPoint = vendorModal.location!['geopoint'];
@@ -599,8 +598,8 @@ class Samagri extends StatelessWidget{
         if(snapshot.data!.exists){
           var disc=snapshot.data!.get('userDiscount');
           var price = snapshot.data!.get('price');
-          var discount_money = (price*disc)/100;
-          double new_price = price - discount_money;
+          var discountMoney = (price*disc)/100;
+          double newPrice = price - discountMoney;
           return vendorModal.status?InkWell(
             onTap: ()async{
               await FirebaseFirestore.instance.collection("Vendors/${vendorModal.uid}/services/${keyword}/items").get().then((value){
@@ -649,7 +648,7 @@ class Samagri extends StatelessWidget{
                 trailing: Column(
                   children: [
                     Text('\₹${snapshot.data!.get('price')}',style:GoogleFonts.aBeeZee(color:Colors.redAccent,fontSize:12,decoration: TextDecoration.lineThrough)),
-                    Text1(data: "\₹${new_price.roundToDouble()}",max: 12,min: 11,clr: Colors.green,weight: FontWeight.bold,),
+                    Text1(data: "\₹${newPrice.roundToDouble()}",max: 12,min: 11,clr: Colors.green,weight: FontWeight.bold,),
                   ],
                 ),
               ),
@@ -739,10 +738,10 @@ class SamagriController extends GetxController{
   List<VendorModal>? get pandits => panditList.value;
   @override
   void onInit(){
-    panditList.bindStream(VendorStream());
+    panditList.bindStream(vendorStream());
     super.onInit();
   }
-  Stream<List<VendorModal>> VendorStream() {
+  Stream<List<VendorModal>> vendorStream() {
     GeoFirePoint center = geo.point(latitude: lat, longitude: lng);
     final reference = FirebaseFirestore.instance.collection('Vendors');
     final stream = geo.collection(collectionRef: reference).within(center: center, radius: radius, field: field);
@@ -774,7 +773,7 @@ class SamagriController extends GetxController{
     select.update((val) {
       val!.vendoruid = vendorUid;
     });
-    print(vendorUid);
+
   }
 
   updateItems(var item){
@@ -809,9 +808,9 @@ class ItemsController extends GetxController{
   final AuthController authController = Get.find();
   List<ItemsModel>? get items => itemsList.value;
 
-  total(var total_price){
+  total(var totalPrice){
     samagri_total.update((val) {
-      val = total_price;
+      val = totalPrice;
     });
   }
   @override
@@ -951,7 +950,7 @@ class SamagriCustomization extends StatelessWidget{
                   SizedBox(height: 15,),
                   Container(
 
-                    child: samagrilist()
+                    child: samagriList()
                   ),
                 ],
               ),
@@ -962,7 +961,7 @@ class SamagriCustomization extends StatelessWidget{
       )
     );
   }
-  Widget samagrilist(){
+  Widget samagriList(){
    // FareBreakup fareBreakup = Get.put(FareBreakup());
     double height = Get.height;
     return StreamBuilder<QuerySnapshot>(
@@ -977,9 +976,9 @@ class SamagriCustomization extends StatelessWidget{
         var vendorsum =[];
         for(var i in snapshot.data!.docs){
           final price=i.get('price');
-          final vendor_price=i.get('vendor_price');
+          final vendorPrice=i.get('vendor_price');
           sum.add(price);
-          vendorsum.add(vendor_price);
+          vendorsum.add(vendorPrice);
         }
         num sam = 0;
         num vendorsam = 0;
@@ -997,7 +996,7 @@ class SamagriCustomization extends StatelessWidget{
           final doc=mess.get('id');
           final more=mess.get('more');
           final quantity=mess.get('quantity');
-          final samagriwidget= samagritile(name, price, more,doc,doclength,sum,quantity
+          final samagriwidget= samagriTile(name, price, more,doc,doclength,sum,quantity
               ,sam,vendorsam);
           serviceWidgets.add(samagriwidget);
         }
@@ -1043,7 +1042,7 @@ class SamagriCustomization extends StatelessWidget{
       },
     );
   }
-  Widget samagritile(String name,double price,String more,String doc,int docLength,List stota,String quantity,num sam,num vendorsam){
+  Widget samagriTile(String name,double price,String more,String doc,int docLength,List stota,String quantity,num sam,num vendorsam){
     return Slidable(
       actionPane: SlidableDrawerActionPane(),
       actionExtentRatio: 0.25,
@@ -1054,7 +1053,7 @@ class SamagriCustomization extends StatelessWidget{
           color: Colors.transparent,
           iconWidget: Icon(Icons.remove,color: Colors.redAccent,),
           onTap: (){
-            print(sam);
+
             if(docLength<=1){
               Get.defaultDialog(title: "Warning",middleText: "At least 5 articles are required minimum in your samagri list.");
             }
@@ -1115,18 +1114,18 @@ class FareBreakup extends GetxController{
       val.pdistance = distance;
     });
   }
-  service(double service_cahrge,String serviceId,String service,String image,var np){
+  service(double serviceCahrge,String serviceId,String service,String image,var np){
     fare_data.update((val) {
-      val!.service_cahrge = service_cahrge;
+      val!.service_cahrge = serviceCahrge;
       val.service = service;
       val.service_id = service;
       val.service_image = image;
       val.np = np;
     });
   }
-  address(double? lat, double? lng,String? booking_address, String? date,String? time,String? Username,String? Userpic,String? UserContact,String? UserAContact,String? UserId){
+  address(double? lat, double? lng,String? bookingAddress, String? date,String? time,String? Username,String? Userpic,String? UserContact,String? UserAContact,String? UserId){
     fare_data.update((val) {
-      val!.booking_address = booking_address;
+      val!.booking_address = bookingAddress;
       val.time = time;
       val.date = date;
       val.Username = Username;
@@ -1181,8 +1180,8 @@ class BookingFinish extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     String samagri = Get.parameters['samagri']!;
-    double samagri_price = samagri=='true'?double.parse('${Get.parameters['price']}'):0.0;
-    double vendor_price = samagri=='true'?double.parse('${Get.parameters['vendor_price']}'):0.0;
+    double samagriPrice = samagri=='true'?double.parse('${Get.parameters['price']}'):0.0;
+    double vendorPrice = samagri=='true'?double.parse('${Get.parameters['vendor_price']}'):0.0;
     final code = OTP.generateTOTPCodeString('JBSWY3DPEHPK3PXP', DateTime.now().millisecondsSinceEpoch);
     double height = MediaQuery.of(context).size.height;
     double width = Get.width;
@@ -1202,8 +1201,8 @@ class BookingFinish extends StatelessWidget{
         init: Get.put(FareBreakup()),
         builder: (FareBreakup farebreakup){
           //____________________________ Without Samagri Calculation ____________________//
-          double convineance_fee = farebreakup.fare_data.value.service_cahrge!*0.05;
-          double total_no_samagri = farebreakup.fare_data.value.service_cahrge!+convineance_fee;
+          double convineanceFee = farebreakup.fare_data.value.service_cahrge!*0.05;
+          double totalNoSamagri = farebreakup.fare_data.value.service_cahrge!+convineanceFee;
           // double ntransaction = total_no_samagri *0.0225;
           // double nbenefit_online = convineance_fee - ntransaction;
           // double ncompany_benefit = nbenefit_online*0.2;
@@ -1212,11 +1211,11 @@ class BookingFinish extends StatelessWidget{
           //____________________________  Samagri Calculation ____________________//
           var userDiscount = samagri=="true"?farebreakup.fare_data.value.userDiscount:0;
           var discount = samagri=="true"?farebreakup.fare_data.value.discount:0;
-          var give_discount =samagri=="true"?samagri_price*userDiscount/100:0.0;
-          var give_vdiscount =samagri=="true"?vendor_price*userDiscount/100:0.0;
-          var samagri_after_dicount = samagri=="true"?samagri_price-give_discount:0.0;
-          var vendor_after_dicount = samagri=="true"?vendor_price-give_vdiscount:0.0;
-          var total_with_samagri = farebreakup.fare_data.value.service_cahrge!+samagri_after_dicount;
+          var giveDiscount =samagri=="true"?samagriPrice*userDiscount/100:0.0;
+          var giveVdiscount =samagri=="true"?vendorPrice*userDiscount/100:0.0;
+          var samagriAfterDicount = samagri=="true"?samagriPrice-giveDiscount:0.0;
+          var vendorAfterDicount = samagri=="true"?vendorPrice-giveVdiscount:0.0;
+          var totalWithSamagri = farebreakup.fare_data.value.service_cahrge!+samagriAfterDicount;
          // var transaction = total_with_samagri*0.0225;
 
 
@@ -1391,12 +1390,12 @@ class BookingFinish extends StatelessWidget{
                             SizedBox(height: 10,),
                             Text1(data: "\₹ ${farebreakup.fare_data.value.service_cahrge!.roundToDouble().toStringAsFixed(2)}", max: 12, min: 11,clr: Colors.grey,),
                             SizedBox(height: 10,),
-                            samagri=='true'?SizedBox(height: 0.0,):Text1(data: "\₹ ${convineance_fee.roundToDouble().toStringAsFixed(2)}", max: 12, min: 11,clr: Colors.grey,),
+                            samagri=='true'?SizedBox(height: 0.0,):Text1(data: "\₹ ${convineanceFee.roundToDouble().toStringAsFixed(2)}", max: 12, min: 11,clr: Colors.grey,),
                             SizedBox(height: 10,),
                             samagri=='true'?Column(
                               children: [
-                                Text1(data: "\₹ ${samagri_after_dicount.roundToDouble().toStringAsFixed(2)}", max: 12, min: 11,clr: Colors.grey,),
-                                Text("\₹ ${samagri_price.roundToDouble().toStringAsFixed(2)}",style: GoogleFonts.aBeeZee(fontSize: 9,color: Colors.grey,decoration: TextDecoration.lineThrough),),
+                                Text1(data: "\₹ ${samagriAfterDicount.roundToDouble().toStringAsFixed(2)}", max: 12, min: 11,clr: Colors.grey,),
+                                Text("\₹ ${samagriPrice.roundToDouble().toStringAsFixed(2)}",style: GoogleFonts.aBeeZee(fontSize: 9,color: Colors.grey,decoration: TextDecoration.lineThrough),),
                               ],
                             ):SizedBox(),
                             SizedBox(height: 10,),
@@ -1429,7 +1428,7 @@ class BookingFinish extends StatelessWidget{
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
-                            Text1(data: samagri=="true"?"\₹ ${total_with_samagri.roundToDouble().toStringAsFixed(2)}": "\₹ ${total_no_samagri.roundToDouble().toStringAsFixed(2)}", max: 12, min: 11,clr: Colors.grey,weight: FontWeight.bold,),
+                            Text1(data: samagri=="true"?"\₹ ${totalWithSamagri.roundToDouble().toStringAsFixed(2)}": "\₹ ${totalNoSamagri.roundToDouble().toStringAsFixed(2)}", max: 12, min: 11,clr: Colors.grey,weight: FontWeight.bold,),
                           ],
                         )
                       ],
@@ -1465,8 +1464,8 @@ class BookingFinish extends StatelessWidget{
                           'refunded':false,
                           'refund':false,
                           'deliver':false,
-                          'samagri_price':samagri_after_dicount.roundToDouble(),
-                          'vendor_price':samagri=="true"?vendor_after_dicount.roundToDouble():0.0,
+                          'samagri_price':samagriAfterDicount.roundToDouble(),
+                          'vendor_price':samagri=="true"?vendorAfterDicount.roundToDouble():0.0,
                           'benefit':0.0,
                           'panditpic':farebreakup.fare_data.value.panditPic,
                           'timestrap':FieldValue.serverTimestamp(),
@@ -1495,8 +1494,8 @@ class BookingFinish extends StatelessWidget{
                           'service':farebreakup.fare_data.value.service,
                           'bookingId':randomNumber,
                           'pandit':farebreakup.fare_data.value.panditName,
-                          'Due':samagri=="true"?total_with_samagri.roundToDouble():total_no_samagri.roundToDouble(),
-                          'convineancefee':samagri=="true"?0.0:convineance_fee.roundToDouble(),
+                          'Due':samagri=="true"?totalWithSamagri.roundToDouble():totalNoSamagri.roundToDouble(),
+                          'convineancefee':samagri=="true"?0.0:convineanceFee.roundToDouble(),
                           'cancel':false,
                           'cod':false,
                           'request':false,
@@ -1520,8 +1519,8 @@ class BookingFinish extends StatelessWidget{
                           'refunded':false,
                           'refund':false,
                           'deliver':false,
-                          'samagri_price':samagri_after_dicount.roundToDouble(),
-                          'vendor_price':samagri=="true"?vendor_after_dicount.roundToDouble():0.0,
+                          'samagri_price':samagriAfterDicount.roundToDouble(),
+                          'vendor_price':samagri=="true"?vendorAfterDicount.roundToDouble():0.0,
                           'benefit':0.0,
                           'panditpic':farebreakup.fare_data.value.panditPic,
                           'timestrap':FieldValue.serverTimestamp(),
@@ -1550,8 +1549,8 @@ class BookingFinish extends StatelessWidget{
                           'service':farebreakup.fare_data.value.service,
                           'bookingId':randomNumber,
                           'pandit':farebreakup.fare_data.value.panditName,
-                          'Due':samagri=="true"?total_with_samagri.roundToDouble():total_no_samagri.roundToDouble(),
-                          'convineancefee':samagri=="true"?0.0:convineance_fee.roundToDouble(),
+                          'Due':samagri=="true"?totalWithSamagri.roundToDouble():totalNoSamagri.roundToDouble(),
+                          'convineancefee':samagri=="true"?0.0:convineanceFee.roundToDouble(),
                           'cancel':false,
                           'cod':false,
                           'request':false,
@@ -1575,8 +1574,8 @@ class BookingFinish extends StatelessWidget{
                           'refunded':false,
                           'refund':false,
                           'deliver':false,
-                          'samagri_price':samagri_after_dicount.roundToDouble(),
-                          'vendor_price':samagri=="true"?vendor_after_dicount.roundToDouble():0.0,
+                          'samagri_price':samagriAfterDicount.roundToDouble(),
+                          'vendor_price':samagri=="true"?vendorAfterDicount.roundToDouble():0.0,
                           'benefit':0.0,
                           'panditpic':farebreakup.fare_data.value.panditPic,
                           'timestrap':FieldValue.serverTimestamp(),
@@ -1604,8 +1603,8 @@ class BookingFinish extends StatelessWidget{
                           'service':farebreakup.fare_data.value.service,
                           'bookingId':randomNumber,
                           'pandit':farebreakup.fare_data.value.panditName,
-                          'Due':samagri=="true"?total_with_samagri.roundToDouble():total_no_samagri.roundToDouble(),
-                          'convineancefee':samagri=="true"?0.0:convineance_fee.roundToDouble(),
+                          'Due':samagri=="true"?totalWithSamagri.roundToDouble():totalNoSamagri.roundToDouble(),
+                          'convineancefee':samagri=="true"?0.0:convineanceFee.roundToDouble(),
                           'cancel':false,
                           'cod':false,
                           'request':false,

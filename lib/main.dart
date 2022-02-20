@@ -97,7 +97,7 @@ class MyApp extends StatelessWidget{
         GetPage(name: '/bookings', page:()=>Booking()),
         GetPage(name: '/live', page: ()=>Live()),
         GetPage(name: '/offer', page: ()=>Offer()),
-        GetPage(name: '/muhurat', page: ()=>Muhurat()),
+        GetPage(name: '/muhurat', page: ()=>Mahurat()),
         GetPage(name: '/pujanvidhi', page: ()=>PujaVidhi()),
         GetPage(name: '/pujanvidhidetail', page: ()=>PujanDetailsScreen()),
         GetPage(name: '/steps', page: ()=>Steps()),
@@ -114,7 +114,7 @@ class MyApp extends StatelessWidget{
          GetPage(name: '/event', page: ()=>Events()),
         GetPage(name:'/eventDetail',page:()=>EventDetail()),
         GetPage(name: '/imageview', page:()=>ImageView()),
-        GetPage(name: '/registration', page:()=> Registration_Form() ),
+        GetPage(name: '/registration', page:()=> RegistrationForm() ),
          GetPage(name: '/success', page:()=> SuccessPage()),
       ],
     );

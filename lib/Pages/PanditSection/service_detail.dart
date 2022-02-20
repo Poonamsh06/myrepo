@@ -34,7 +34,7 @@ class ServiceDetail extends StatelessWidget{
           }
           var swastik = serviceDetailController.userModel.value.swastik;
           int? rates = serviceDetailController.userModel.value.raters;
-          double? overall_rate=swastik!/rates!;
+          double? overallRate=swastik!/rates!;
           return Stack(
             children: [
               SingleChildScrollView(
@@ -93,7 +93,7 @@ class ServiceDetail extends StatelessWidget{
                         children: [
                           Expanded(
                               flex: 2,
-                              child:MiniBox(icon: true, FirstText: "${swastik<=0?0.0:overall_rate!.toStringAsFixed(1)}", SecondText: "${serviceDetailController.userModel.value.raters} ratings",iconData: CupertinoIcons.star,)),
+                              child:MiniBox(icon: true, FirstText: "${swastik<=0?0.0:overallRate!.toStringAsFixed(1)}", SecondText: "${serviceDetailController.userModel.value.raters} ratings",iconData: CupertinoIcons.star,)),
                           Expanded(
                               flex: 2,
                               child: MiniBox(icon: true, FirstText: "${serviceDetailController.userModel.value.time}", SecondText: "Duration",iconData: Icons.watch_later_outlined,)),
@@ -119,7 +119,7 @@ class ServiceDetail extends StatelessWidget{
                       ),
                                  SizedBox(height:15), 
 
-                                 ResponsiveWidget.isSmallScreen(context)? SizedBox():SingleChildScrollView(child: Details(serviceDetailController,context))                     
+                                 ResponsiveWidget.isSmallScreen(context)? SizedBox():SingleChildScrollView(child: details(serviceDetailController,context))
                      
                            ]
                          );
@@ -135,13 +135,13 @@ class ServiceDetail extends StatelessWidget{
                   child: Column(children: [
                      Padding(
                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                     child: ResponsiveWidget.isSmallScreen(context)?Details(serviceDetailController,context) :SizedBox(),
+                     child: ResponsiveWidget.isSmallScreen(context)?details(serviceDetailController,context) :SizedBox(),
                    )      ,                    
                      
                       
                       
                       SizedBox(height:15),
-                      ResponsiveWidget.isSmallScreen(context)?LearnWatch():SizedBox(),
+                      ResponsiveWidget.isSmallScreen(context)?learnWatch():SizedBox(),
                       
                       SizedBox(height: 10,),
                       ResponsiveWidget.isSmallScreen(context)?Reviews(pandit: false, uid: Get.parameters['pid']!, ServiceId: serviceDetailController.userModel.value.serviceId!,swastik: double.parse("${serviceDetailController.userModel.value.swastik}"),reviewers: serviceDetailController.userModel.value.reviewers,raters:serviceDetailController.userModel.value.raters,):SizedBox(),
@@ -151,7 +151,7 @@ class ServiceDetail extends StatelessWidget{
                         children: [
                           Expanded(
                             flex: 1,
-                            child: LearnWatch()),
+                            child: learnWatch()),
                           Expanded(
                             flex: 1,
                             child: Reviews(pandit: false, uid: Get.parameters['pid']!, ServiceId: serviceDetailController.userModel.value.serviceId!,swastik: double.parse("${serviceDetailController.userModel.value.swastik}"),reviewers: serviceDetailController.userModel.value.reviewers,raters:serviceDetailController.userModel.value.raters,))
@@ -172,7 +172,7 @@ class ServiceDetail extends StatelessWidget{
                     child: InkWell(
                       onTap: (){
                         String keyword=serviceDetailController.userModel.value.keyword.toString().substring(1);
-                        print(keyword);
+
                        if(authController.user==null){
                          Get.toNamed('/account');
                          Get.snackbar("Login", "Please Login to proceed booking",backgroundColor: Colors.white,padding: EdgeInsets.all(20),colorText: Colors.grey,duration:Duration(seconds: 3));
@@ -207,7 +207,7 @@ class ServiceDetail extends StatelessWidget{
     
   }
 
-  Widget LearnWatch() {
+  Widget learnWatch() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(
@@ -231,7 +231,7 @@ class ServiceDetail extends StatelessWidget{
     );
   }
 
-  Widget Details(ServiceDetailController serviceDetailController,BuildContext context) {
+  Widget details(ServiceDetailController serviceDetailController,BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [

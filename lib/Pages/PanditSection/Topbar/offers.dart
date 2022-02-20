@@ -59,16 +59,7 @@ class Offer extends StatelessWidget{
                    
                     return Column(
                       children: [
-                        // ResponsiveWidget.isSmallScreen(context)?
-                        // Container(
-                        //   padding: EdgeInsets.all(10),
-                        //   width: width,
-                        //   height: height*0.9,
-                        //   decoration: BoxDecoration(
-                        //     image: DecorationImage(image: NetworkImage('https://firebasestorage.googleapis.com/v0/b/flutter-bf503.appspot.com/o/New%20App%2Foffers%2Fphone60.png?alt=media&token=50985d48-caba-4c74-921c-e0c51f972207'),fit: BoxFit.contain)
-                        //   ),
-                        // )
-                        // :
+
                         Image.network('${snapshot.data!.get('image1')}'),
                         SizedBox(height:20),
                         Padding(

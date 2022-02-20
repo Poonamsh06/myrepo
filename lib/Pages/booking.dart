@@ -199,7 +199,7 @@ class Booking extends StatelessWidget{
                      shrinkWrap: true,
                      itemCount: trendingController.serviceTopList.value!.length,
                      itemBuilder: (_, index) {
-                       return BookingCard(width,trendingController.serviceTop![index],(){_key.currentState!.openEndDrawer();},bookingDetailController);
+                       return bookingCard(width,trendingController.serviceTop![index],(){_key.currentState!.openEndDrawer();},bookingDetailController);
                      },
                    );
                  } else {
@@ -216,7 +216,7 @@ class Booking extends StatelessWidget{
    );
   }
 
-  Container BookingCard(double width,BookingModal bookingModal,VoidCallback openDraw,BookingDetailController bookingDetailController) {
+  Container bookingCard(double width,BookingModal bookingModal,VoidCallback openDraw,BookingDetailController bookingDetailController) {
     return Container(
              padding: EdgeInsets.all(20),
              margin: EdgeInsets.only(bottom:20),
@@ -264,8 +264,7 @@ class Booking extends StatelessWidget{
                                       SizedBox(height: 10),
                                       InkWell(
                                           onTap: (){
-                                            print(bookingModal.clientuid);
-                                            print(bookingModal.bookingId);
+
                                             bookingDetailController.initializePanditModel(bookingModal.bookingId,bookingModal.clientuid!);
                                             openDraw();
                                           },

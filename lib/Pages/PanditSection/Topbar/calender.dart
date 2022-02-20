@@ -356,7 +356,7 @@ class Calender extends StatelessWidget{
   }
 
 }
-class slide2Clipper extends CustomClipper<Path>{
+class Slide2Clipper extends CustomClipper<Path>{
   
   @override
   Path getClip(Size size) {

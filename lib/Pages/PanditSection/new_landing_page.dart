@@ -16,10 +16,10 @@ class NewLandingPage extends StatelessWidget{
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width =MediaQuery.of(context).size.width;
-    var ScreenSize= MediaQuery.of(context).size;
+    var screenSize= MediaQuery.of(context).size;
     final AuthController authController = Get.find();
     return Scaffold(
-      appBar:PreferredSize(preferredSize: Size(ScreenSize.width,height*0.099,), 
+      appBar:PreferredSize(preferredSize: Size(screenSize.width,height*0.099,),
       child: Container(
               padding: EdgeInsets.all(10),
               decoration: BoxDecoration(
@@ -119,13 +119,13 @@ class NewLandingPage extends StatelessWidget{
               Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [                                    
-                    ShadowContainer('700+','Active Pandits',context),
+                    shadowContainer('700+','Active Pandits',context),
                      SizedBox(height:20),
-                    ShadowContainer('200+','Vendors',context),
+                    shadowContainer('200+','Vendors',context),
                      SizedBox(height:20),
-                     ShadowContainer('100+','Puja Variety',context),
+                     shadowContainer('100+','Puja Variety',context),
                       SizedBox(height:20),
-                    ShadowContainer('1 k+','Served',context),
+                    shadowContainer('1 k+','Served',context),
                 ],
               ):
               
@@ -134,10 +134,10 @@ class NewLandingPage extends StatelessWidget{
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    ShadowContainer('700+','Active Pandits',context),
-                    ShadowContainer('200+','Vendors',context),
-                     ShadowContainer('100+','Puja Variety',context),
-                    ShadowContainer('1 k+','Served',context),
+                    shadowContainer('700+','Active Pandits',context),
+                    shadowContainer('200+','Vendors',context),
+                     shadowContainer('100+','Puja Variety',context),
+                    shadowContainer('1 k+','Served',context),
                    
                   
                   ],
@@ -151,7 +151,7 @@ class NewLandingPage extends StatelessWidget{
     );
   }
 
-  Container ShadowContainer(String txt1, String txt2,BuildContext context) {
+  Container shadowContainer(String txt1, String txt2,BuildContext context) {
     return Container(
       alignment: Alignment.center,
                     height: 100,

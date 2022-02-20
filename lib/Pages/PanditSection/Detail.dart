@@ -207,7 +207,7 @@ class Detail extends StatelessWidget{
       ),
     );
   }
-    Widget loggeduggestions(AsyncSnapshot<DocumentSnapshot<Object?>> snapshot) {
+    Widget loggedSuggestions(AsyncSnapshot<DocumentSnapshot<Object?>> snapshot) {
     return GetX<UserController>(
                       init: Get.put<UserController>(UserController()),
                       builder: (UserController userController){
@@ -254,7 +254,7 @@ class Detail extends StatelessWidget{
                     );
   }
 
-  Widget unloggeduggestions(AsyncSnapshot<DocumentSnapshot<Object?>> snapshot) {
+  Widget unLoggedSuggestions(AsyncSnapshot<DocumentSnapshot<Object?>> snapshot) {
     return GetX<LocationController>(
       init: Get.put<LocationController>(LocationController()),
       builder: (LocationController userController){
@@ -507,18 +507,18 @@ class PanditNewCard extends StatelessWidget{
     int? rates = bmModal!.raters;
     double? overall_rate=swastik!/rates!;
     if(overall_rate!>=4){
-      return newrate(overall_rate,Colors.green);
+      return newRate(overall_rate,Colors.green);
     }
     if(overall_rate >=3 && overall_rate<4){
-      return  newrate(overall_rate,Colors.orangeAccent);
+      return  newRate(overall_rate,Colors.orangeAccent);
     }
-    return  newrate(overall_rate>0?bmModal!.swastik:0, Colors.redAccent);
+    return  newRate(overall_rate>0?bmModal!.swastik:0, Colors.redAccent);
 
 
 
   }
 
-  Container newrate(double overall_rate,Color clr) {
+  Container newRate(double overall_rate,Color clr) {
     return Container(
       decoration: BoxDecoration(
         color: clr,

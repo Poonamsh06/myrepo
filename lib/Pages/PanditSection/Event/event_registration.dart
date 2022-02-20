@@ -40,9 +40,9 @@ import 'dart:convert';
 import 'dart:js';
 
 
-class Registration_Form extends StatefulWidget{
+class RegistrationForm extends StatefulWidget{
   @override
-  _Registration_FormState createState() => _Registration_FormState();
+  _RegistrationFormState createState() => _RegistrationFormState();
 }
 enum AppState {
   free,
@@ -50,8 +50,8 @@ enum AppState {
   cropped,
 }
 
-class _Registration_FormState extends State<Registration_Form> {
-  final RegistraionField registerForm = Get.put(RegistraionField());
+class _RegistrationFormState extends State<RegistrationForm> {
+  final RegistrationField registerForm = Get.put(RegistrationField());
   late AppState appstate;
   File? SelectImageFile;
   File? imageFile;
@@ -88,7 +88,7 @@ class _Registration_FormState extends State<Registration_Form> {
         customMetadata: {'picked-file-path': _imageFileList![0].path});
     if(kIsWeb){
       firebase_storage.UploadTask task = firebaseStorage.putData(await _imageFileList![0].readAsBytes(),metadata);
-      var dowurl = await (await task.whenComplete(() {print("url downloaded");})).ref.getDownloadURL();
+      var dowurl = await (await task.whenComplete(() {})).ref.getDownloadURL();
       String url = dowurl.toString();
       task.then((value)async{
         setState(() {
@@ -387,7 +387,7 @@ class _Registration_FormState extends State<Registration_Form> {
                                         loadController.updateLoad();
                                         uploadImage(context);  
                                             Future.delayed(Duration(seconds: 10),()async{
-                                              eventControllerPayment.updatePayemnt('$name','$_chosenValue','$photoUrl','$_chosenValueG','${events[int.parse(indx)]["name"]}',events[int.parse(indx)]["participants"]!.length,'${events[int.parse(indx)]["puja"]}',snapshot.data!.get("${events[int.parse(indx)]["name"]}P"));
+                                              eventControllerPayment.updatePayment('$name','$_chosenValue','$photoUrl','$_chosenValueG','${events[int.parse(indx)]["name"]}',events[int.parse(indx)]["participants"]!.length,'${events[int.parse(indx)]["puja"]}',snapshot.data!.get("${events[int.parse(indx)]["name"]}P"));
                                             }).whenComplete((){
                                                      redirectToCheckout(context,int.parse(indx));
                                                     // Get.toNamed('/success?id=$indx');
@@ -421,10 +421,10 @@ class _Registration_FormState extends State<Registration_Form> {
   }
 }
 
-class RegistraionField extends GetxController{
+class RegistrationField extends GetxController{
   final GlobalKey<FormState>loginFormKey=GlobalKey<FormState>();
   late TextEditingController passwordController;
-  late TextEditingController emailContrller;
+  late TextEditingController emailController;
   late TextEditingController shopNameController;
   late TextEditingController addressController;
   late TextEditingController otpController;
@@ -439,7 +439,7 @@ class RegistraionField extends GetxController{
   void onInit(){
     super.onInit();
     passwordController=TextEditingController();
-    emailContrller=TextEditingController();
+    emailController=TextEditingController();
     shopNameController=TextEditingController();
     addressController=TextEditingController();
     otpController=TextEditingController();
@@ -448,7 +448,7 @@ class RegistraionField extends GetxController{
   @override
   void onClose(){
     passwordController.dispose();
-    emailContrller.dispose();
+    emailController.dispose();
     shopNameController.dispose();
     addressController.dispose();
     otpController.dispose();

@@ -89,7 +89,7 @@ class EventController extends GetxController{
       
     });
   }
-  updatelive(String BigS,String youtube,dynamic price,String note,List<dynamic> age,List<dynamic> gender,String place,String status,String image,String name,String  about,String duration,String total_days ,List<dynamic> participants,List<dynamic> terms){
+  updateLive(String BigS,String youtube,dynamic price,String note,List<dynamic> age,List<dynamic> gender,String place,String status,String image,String name,String  about,String duration,String total_days ,List<dynamic> participants,List<dynamic> terms){
     eventData.update((val) {
       val!.about = about;
       val.image = image;
@@ -108,7 +108,7 @@ class EventController extends GetxController{
       val.BigS = BigS;
     });
   }
-  updateparticipants(List<dynamic> p){
+  updateParticipants(List<dynamic> p){
     eventData.value.participants1 = p;
   }
 }
@@ -137,7 +137,7 @@ class EventData{
 class EventControllerPayment extends GetxController{
   var paymentData = EventPaymentData().obs;
 
-  updatePayemnt(String name, String age, String image, String gender, String event,int num,String puja,List<dynamic> participant1){
+  updatePayment(String name, String age, String image, String gender, String event,int num,String puja,List<dynamic> participant1){
       paymentData.update((val) {
         val!.name = name;
         val.age = age;

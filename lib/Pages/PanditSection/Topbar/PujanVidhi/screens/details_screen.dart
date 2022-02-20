@@ -96,7 +96,7 @@ class PujanDetailsScreen extends StatelessWidget {
                       spacing: 20,
                       runSpacing: 20,
                       children: <Widget>[
-                        SeassionCard(
+                        SessionCard(
                           pagenum: 0,
                           clr: '${pujanVidhiController.pujanModal.value.bg}',
                           seassionNum: 1,
@@ -105,7 +105,7 @@ class PujanDetailsScreen extends StatelessWidget {
 
                           },
                         ),
-                        SeassionCard(
+                        SessionCard(
                           pagenum: 1,
                           clr: '${pujanVidhiController.pujanModal.value.bg}',
                           seassionNum: 2,
@@ -113,7 +113,7 @@ class PujanDetailsScreen extends StatelessWidget {
                             Get.toNamed('/steps');
                           },
                         ),
-                        SeassionCard(
+                        SessionCard(
                           pagenum: 2,
                           clr: '${pujanVidhiController.pujanModal.value.bg}',
                           seassionNum: 3,
@@ -121,7 +121,7 @@ class PujanDetailsScreen extends StatelessWidget {
                             Get.toNamed('/steps');
                           },
                         ),
-                        SeassionCard(
+                        SessionCard(
                           pagenum: 3,
                           clr: '${pujanVidhiController.pujanModal.value.bg}',
                           seassionNum: 4,
@@ -222,7 +222,7 @@ class PujanDetailsScreen extends StatelessWidget {
       ),
     );
   }
-  GetX<UserController> loggeduggestions(AsyncSnapshot<DocumentSnapshot<Object?>> snapshot) {
+  GetX<UserController> loggedSuggestions(AsyncSnapshot<DocumentSnapshot<Object?>> snapshot) {
     return GetX<UserController>(
                       init: Get.put<UserController>(UserController()),
                       builder: (UserController userController){
@@ -269,7 +269,7 @@ class PujanDetailsScreen extends StatelessWidget {
                     );
   }
 
-  Widget unloggeduggestions(AsyncSnapshot<DocumentSnapshot<Object?>> snapshot) {
+  Widget unLoggedSuggestions(AsyncSnapshot<DocumentSnapshot<Object?>> snapshot) {
     return GetX<LocationController>(
       init: Get.put<LocationController>(LocationController()),
       builder: (LocationController userController){
@@ -317,13 +317,13 @@ class PujanDetailsScreen extends StatelessWidget {
   }
 }
 
-class SeassionCard extends StatelessWidget {
+class SessionCard extends StatelessWidget {
   final int? pagenum;
   final int? seassionNum;
   final bool? isDone;
   final VoidCallback? press;
   final String? clr;
-  const SeassionCard({
+  const SessionCard({
     this.pagenum,
     this.clr,
     this.seassionNum,
@@ -443,7 +443,7 @@ class Steps extends StatelessWidget{
               });
             },
             children: [
-              SamagriPage(),
+              SamagiriPage(),
               AartPage(),
               AartiPage(),
               Completion()
@@ -508,7 +508,7 @@ class Steps extends StatelessWidget{
 
 }
 
-class SamagriPage extends StatelessWidget{
+class SamagiriPage extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     final PujanVidhiController pujanVidhiController = Get.put(PujanVidhiController());

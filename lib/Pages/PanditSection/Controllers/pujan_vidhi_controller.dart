@@ -20,7 +20,7 @@ class PujanVidhiController extends GetxController{
      pujanModal.value.state = state;
    }
 
-   updateSamagri(List<Samagriss>samagri){
+   updateSamagri(List<Samagiri>samagri){
      pujanModal.value.samagris =samagri;
    }
 

@@ -32,10 +32,7 @@ class _SearchPlacesState extends State<SearchPlaces> {
               ),
               TextButton(
                 onPressed: () {
-                  print(FlutterGooglePlacesWeb.value['name']); // '1600 Amphitheatre Parkway, Mountain View, CA, USA'
-                  print(FlutterGooglePlacesWeb.value['streetAddress']); // '1600 Amphitheatre Parkway'
-                  print(FlutterGooglePlacesWeb.value['city']); // 'CA'
-                  print(FlutterGooglePlacesWeb.value['country']);
+
                   setState(() {
                     test = FlutterGooglePlacesWeb.value['name'] ?? '';
                   });

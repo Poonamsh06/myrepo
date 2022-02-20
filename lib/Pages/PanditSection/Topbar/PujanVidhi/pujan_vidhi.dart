@@ -182,9 +182,9 @@ class _PujaVidhiState extends State<PujaVidhi> {
                                 itemBuilder: (_,index){
                                   List<dynamic> samgris = pujas[index]['samagri']['${stateName}'];
                                   List<dynamic> samagriIdList=[];
-                                  List<Samagriss> pujanSamagri=[];
+                                  List<Samagiri> pujanSamagri=[];
                                   samgris.forEach((element) {
-                                    pujanSamagri.add(Samagriss(name: SamagriDetails(mainListOfSamagri: mainSamagriList,samagriId: element["id"]).details["name"][textLanguageController.langData.value.dataCode],
+                                    pujanSamagri.add(Samagiri(name: SamagriDetails(mainListOfSamagri: mainSamagriList,samagriId: element["id"]).details["name"][textLanguageController.langData.value.dataCode],
                                         img: SamagriDetails(mainListOfSamagri: mainSamagriList,samagriId: element["id"]).details["image"],
                                         quantity: element['quantity'],
                                         description: SamagriDetails(mainListOfSamagri: mainSamagriList,samagriId: element["id"]).details["description"][textLanguageController.langData.value.dataCode]
@@ -244,11 +244,11 @@ class SamagriDetails {
     return {};
   }
 }
-class Samagriss{
+class Samagiri{
   final name;
   final img;
   final quantity;
   final description;
-  Samagriss({required this.name,required this.img,required this.quantity,required this.description});
+  Samagiri({required this.name,required this.img,required this.quantity,required this.description});
 
 }

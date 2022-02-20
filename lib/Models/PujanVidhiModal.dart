@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:pujapurohit/Pages/PanditSection/Topbar/PujanVidhi/pujanVidhi.dart';
+import 'package:pujapurohit/Pages/PanditSection/Topbar/PujanVidhi/pujan_vidhi.dart';
 
 class PujanVidhiModel {
   var image;

@@ -3,14 +3,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:get/get.dart';
-import 'package:pujapurohit/SignIn/AuthController.dart';
-import 'package:pujapurohit/Widgets/Loader.dart';
-import 'package:pujapurohit/Widgets/Texts.dart';
+import 'package:pujapurohit/SignIn/auth_controller.dart';
+import 'package:pujapurohit/Widgets/loader.dart';
+import 'package:pujapurohit/Widgets/texts.dart';
 import 'package:pujapurohit/Widgets/reviews.dart';
-import '../NewPanditHome.dart';
-import 'Controllers/serviceTop.dart';
-import 'Profile.dart';
-import 'Widgets/ImageView.dart';
+import '../new_pandit_home.dart';
+import 'Controllers/service_top.dart';
+import 'profile.dart';
+import 'Widgets/image_view.dart';
 import 'Widgets/responsive.dart';
 
 class ServiceDetail extends StatelessWidget{

@@ -6,11 +6,11 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:pujapurohit/Models/BookingModal.dart';
-import 'package:pujapurohit/Payments/RazorpayWeb.dart';
-import 'package:pujapurohit/SignIn/AuthController.dart';
-import 'package:pujapurohit/Widgets/Loader.dart';
-import 'package:pujapurohit/Widgets/Texts.dart';
-import 'PanditSection/Controllers/BookingController.dart';
+import 'package:pujapurohit/Pages/PanditSection/Controllers/booking_controller.dart';
+import 'package:pujapurohit/Payments/razorpay_web.dart';
+import 'package:pujapurohit/SignIn/auth_controller.dart';
+import 'package:pujapurohit/Widgets/loader.dart';
+import 'package:pujapurohit/Widgets/texts.dart';
 
 class Booking extends StatelessWidget{
   @override

@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:pujapurohit/Pages/PanditSection/Widgets/responsive.dart';
-import 'package:pujapurohit/SignIn/AuthController.dart';
-import 'package:pujapurohit/Widgets/Texts.dart';
+import 'package:pujapurohit/SignIn/auth_controller.dart';
+import 'package:pujapurohit/Widgets/texts.dart';
 import 'package:pujapurohit/colors/light_colors.dart';
 
-import '../NewPanditHome.dart';
-import 'Account.dart';
+import '../new_pandit_home.dart';
+import 'account.dart';
 
 class NewLandingPage extends StatelessWidget{
   @override

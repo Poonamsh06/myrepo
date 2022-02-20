@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:pujapurohit/Models/PujanVidhiModal.dart';
 import 'package:pujapurohit/Models/serviceModal.dart';
-import 'package:pujapurohit/Pages/PanditSection/Topbar/PujanVidhi/pujanVidhi.dart';
+import 'package:pujapurohit/Pages/PanditSection/Topbar/PujanVidhi/pujan_vidhi.dart';
 
 
 

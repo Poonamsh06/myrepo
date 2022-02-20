@@ -14,12 +14,12 @@ import 'package:http/http.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:line_icons/line_icons.dart';
-import 'package:pujapurohit/Pages/NewPanditHome.dart';
-import 'package:pujapurohit/Pages/PanditSection/Controllers/EventController.dart';
+
+import 'package:pujapurohit/Pages/PanditSection/Controllers/event_controller.dart';
 import 'package:pujapurohit/Pages/PanditSection/Widgets/responsive.dart';
-import 'package:pujapurohit/SignIn/AuthController.dart';
-import 'package:pujapurohit/Widgets/Loader.dart';
-import 'package:pujapurohit/Widgets/Texts.dart';
+import 'package:pujapurohit/Pages/new_pandit_home.dart';
+import 'package:pujapurohit/Widgets/loader.dart';
+import 'package:pujapurohit/Widgets/texts.dart';
 import 'package:pujapurohit/Widgets/newbottombar.dart';
 import 'package:pujapurohit/colors/light_colors.dart';
 import 'package:pujapurohit/controller/UserController.dart';
@@ -32,8 +32,8 @@ import 'package:uuid/uuid.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:wc_flutter_share/wc_flutter_share.dart';
 import 'dart:ui' as ui;
-import '../Controllers/panditsController.dart';
-import '../Detail.dart';
+import '../Controllers/pandits_controller.dart';
+import '../detail.dart';
 
 class Events extends StatelessWidget{
   @override

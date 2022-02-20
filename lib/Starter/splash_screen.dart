@@ -6,8 +6,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:line_icons/line_icon.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:pujapurohit/Pages/PanditSection/Widgets/responsive.dart';
-import 'package:pujapurohit/Widgets/Loader.dart';
-import 'package:pujapurohit/Widgets/Texts.dart';
+import 'package:pujapurohit/Widgets/loader.dart';
+import 'package:pujapurohit/Widgets/texts.dart';
 
 class SplashScreen extends StatefulWidget{
   @override

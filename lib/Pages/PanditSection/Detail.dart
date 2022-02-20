@@ -7,21 +7,19 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hovering/hovering.dart';
 import 'package:pujapurohit/Models/BModal.dart';
-import 'package:pujapurohit/Pages/PanditSection/Controllers/panditsController.dart';
-import 'package:pujapurohit/Pages/PanditSection/PanditHome.dart';
-import 'package:pujapurohit/Pages/PanditSection/Profile.dart';
-import 'package:pujapurohit/Pages/PanditSection/Widgets/ImageView.dart';
-import 'package:pujapurohit/SignIn/AuthController.dart';
-import 'package:pujapurohit/Widgets/Loader.dart';
-import 'package:pujapurohit/Widgets/Texts.dart';
-import 'package:pujapurohit/Widgets/YoutubePlayer.dart';
+import 'package:pujapurohit/Pages/PanditSection/Controllers/pandits_controller.dart';
+
+import 'package:pujapurohit/Pages/PanditSection/profile.dart';
+import 'package:pujapurohit/Pages/PanditSection/Widgets/image_view.dart';
+import 'package:pujapurohit/SignIn/auth_controller.dart';
+import 'package:pujapurohit/Widgets/loader.dart';
+import 'package:pujapurohit/Widgets/texts.dart';
+import 'package:pujapurohit/Widgets/youtube_player.dart';
 import 'package:pujapurohit/Widgets/bottombar.dart';
 import 'package:pujapurohit/Widgets/newbottombar.dart';
 import 'package:pujapurohit/controller/CommonController.dart';
 import 'package:pujapurohit/controller/LocationController.dart';
 import 'package:pujapurohit/controller/UserController.dart';
-
-import '../NewPanditHome.dart';
 import 'Widgets/responsive.dart';
 
 class Detail extends StatelessWidget{

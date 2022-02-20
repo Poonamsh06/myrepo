@@ -4,8 +4,8 @@ import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 
 import 'package:provider/provider.dart';
-import 'package:pujapurohit/SignIn/AuthController.dart';
-import 'package:pujapurohit/SignIn/login.dart';
+import 'package:pujapurohit/SignIn/auth_controller.dart';
+import 'package:pujapurohit/SignIn/login_page.dart';
 import 'package:pujapurohit/controller/UserController.dart';
 import 'package:url_launcher/url_launcher.dart';
 

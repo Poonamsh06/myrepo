@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:pujapurohit/Models/serviceModal.dart';
 
-import 'Texts.dart';
+import 'texts.dart';
 class Reviews extends StatelessWidget{
   final String uid;
   final String ServiceId;

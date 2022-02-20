@@ -7,10 +7,10 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:line_icons/line_icon.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:pujapurohit/Models/BModal.dart';
-import 'package:pujapurohit/Widgets/Texts.dart';
+import 'package:pujapurohit/Widgets/texts.dart';
 import 'package:pujapurohit/Widgets/reviews.dart';
 
-import '../NewPanditHome.dart';
+import '../new_pandit_home.dart';
 import 'Widgets/responsive.dart';
 
 class BigScreenDetailPage extends StatelessWidget{

@@ -10,12 +10,13 @@ import 'package:get/get.dart';
 import 'package:pujapurohit/Functions/ReverseGeocode.dart';
 
 import 'package:pujapurohit/Pages/PanditSection/Widgets/responsive.dart';
-import 'package:pujapurohit/SignIn/StarterController.dart';
-import 'package:pujapurohit/SignIn/login.dart';
-import 'package:pujapurohit/Widgets/Loader.dart';
-import 'package:pujapurohit/Widgets/Texts.dart';
-import 'package:pujapurohit/Widgets/YoutubePlayer.dart';
+import 'package:pujapurohit/SignIn/starter_controller.dart';
+import 'package:pujapurohit/SignIn/login_page.dart';
+import 'package:pujapurohit/Widgets/loader.dart';
+import 'package:pujapurohit/Widgets/texts.dart';
+
 import 'package:pujapurohit/Widgets/bottombar.dart';
+import 'package:pujapurohit/Widgets/youtube_player.dart';
 import 'package:pujapurohit/colors/light_colors.dart';
 
 import 'package:pujapurohit/controller/LocationController.dart';

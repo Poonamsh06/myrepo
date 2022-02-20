@@ -8,11 +8,11 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pujapurohit/Functions/ReverseGeocode.dart';
 import 'package:pujapurohit/Pages/PanditSection/Widgets/responsive.dart';
-import 'package:pujapurohit/SignIn/AuthController.dart';
-import 'package:pujapurohit/SignIn/StarterController.dart';
-import 'package:pujapurohit/Starter/SplashScreen.dart';
-import 'package:pujapurohit/Widgets/Loader.dart';
-import 'package:pujapurohit/Widgets/Texts.dart';
+import 'package:pujapurohit/SignIn/auth_controller.dart';
+import 'package:pujapurohit/SignIn/starter_controller.dart';
+import 'package:pujapurohit/Starter/splash_screen.dart';
+import 'package:pujapurohit/Widgets/loader.dart';
+import 'package:pujapurohit/Widgets/texts.dart';
 import 'package:pujapurohit/controller/loaderController.dart';
 import 'package:pujapurohit/controller/loginController.dart';
 

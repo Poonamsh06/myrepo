@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:pujapurohit/Pages/PanditSection/Controllers/serving_Cities.dart';
-import 'package:pujapurohit/Widgets/Loader.dart';
-import 'package:pujapurohit/Widgets/Texts.dart';
+import 'package:pujapurohit/Pages/PanditSection/Controllers/serving_cities.dart';
+import 'package:pujapurohit/Widgets/loader.dart';
+import 'package:pujapurohit/Widgets/texts.dart';
 import 'package:pujapurohit/Widgets/newbottombar.dart';
 
-import '../NewPanditHome.dart';
-import 'Controllers/panditsController.dart';
-import 'PanditHome.dart';
+import '../new_pandit_home.dart';
+import 'Controllers/pandits_controller.dart';
+import 'pandit_home.dart';
 import 'Widgets/responsive.dart';
 import 'package:hovering/hovering.dart';
 class CustomCity extends StatelessWidget{

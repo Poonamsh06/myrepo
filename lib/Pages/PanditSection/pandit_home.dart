@@ -13,20 +13,20 @@ import 'package:provider/provider.dart';
 import 'package:pujapurohit/Models/BModal.dart';
 import 'package:pujapurohit/Pages/PanditSection/Widgets/responsive.dart';
 import 'package:pujapurohit/Pages/Services/database.dart';
-import 'package:pujapurohit/SignIn/Update.dart';
-import 'package:pujapurohit/Widgets/Loader.dart';
-import 'package:pujapurohit/Widgets/Texts.dart';
+import 'package:pujapurohit/SignIn/update.dart';
+import 'package:pujapurohit/Widgets/loader.dart';
+import 'package:pujapurohit/Widgets/texts.dart';
 import 'package:pujapurohit/Widgets/bottombar.dart';
 import 'package:pujapurohit/Widgets/newbottombar.dart';
 import 'package:pujapurohit/colors/light_colors.dart';
 import 'package:pujapurohit/controller/CommonController.dart';
 import 'package:pujapurohit/controller/LocationController.dart';
 import 'package:url_launcher/link.dart';
-import '../NewPanditHome.dart';
-import 'Account.dart';
-import 'Controllers/panditsController.dart';
-import 'Controllers/upcomigEvent.dart';
-import 'Widgets/ImageView.dart';
+import '../new_pandit_home.dart';
+import 'account.dart';
+import 'Controllers/pandits_controller.dart';
+import 'Controllers/upcomig_event.dart';
+import 'Widgets/image_view.dart';
 
 class PanditHome extends StatefulWidget{
  

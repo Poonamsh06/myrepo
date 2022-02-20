@@ -2,11 +2,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:pujapurohit/Pages/NewPanditHome.dart';
-import 'package:pujapurohit/Pages/PanditSection/Controllers/pujanVidhiController.dart';
+import 'package:pujapurohit/Pages/new_pandit_home.dart';
+import 'package:pujapurohit/Pages/PanditSection/Controllers/pujan_vidhi_controller.dart';
 import 'package:pujapurohit/Pages/PanditSection/Widgets/responsive.dart';
-import 'package:pujapurohit/Widgets/Loader.dart';
-import 'package:pujapurohit/Widgets/Texts.dart';
+import 'package:pujapurohit/Widgets/loader.dart';
+import 'package:pujapurohit/Widgets/texts.dart';
 import 'package:pujapurohit/Widgets/newbottombar.dart';
 import 'package:pujapurohit/controller/UserController.dart';
 

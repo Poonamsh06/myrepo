@@ -6,15 +6,15 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pujapurohit/Models/serviceModal.dart';
 import 'package:pujapurohit/Models/servicetop.dart';
-import 'package:pujapurohit/Pages/NewPanditHome.dart';
-import 'package:pujapurohit/Pages/PanditSection/Controllers/serviceTop.dart';
-import 'package:pujapurohit/Widgets/Loader.dart';
-import 'package:pujapurohit/Widgets/Texts.dart';
+import 'package:pujapurohit/Pages/PanditSection/Controllers/service_top.dart';
+import 'package:pujapurohit/Widgets/loader.dart';
+import 'package:pujapurohit/Widgets/texts.dart';
 import 'package:pujapurohit/Widgets/newbottombar.dart';
 import 'package:pujapurohit/Widgets/reviews.dart';
 import 'package:pujapurohit/controller/CommonController.dart';
-import 'Controllers/ImagesController.dart';
-import 'Controllers/panditsController.dart';
+import '../new_pandit_home.dart';
+import 'Controllers/images_controller.dart';
+import 'Controllers/pandits_controller.dart';
 import 'Widgets/responsive.dart';
 class Profile extends StatelessWidget{
   @override

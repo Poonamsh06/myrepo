@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:pujapurohit/SignIn/AuthController.dart';
+import 'package:pujapurohit/SignIn/auth_controller.dart';
 import 'package:pujapurohit/controller/LocationController.dart';
 
 

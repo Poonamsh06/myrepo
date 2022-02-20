@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:pujapurohit/Models/CalenderModal.dart';
-import 'package:pujapurohit/Pages/PanditSection/Controllers/DateContrller.dart';
+import 'package:pujapurohit/Pages/PanditSection/Controllers/date_contrller.dart';
 
 class CalenderController extends GetxController{
   final int month;

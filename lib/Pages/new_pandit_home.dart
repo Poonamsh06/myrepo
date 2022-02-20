@@ -10,10 +10,10 @@ import 'package:intl/intl.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:pujapurohit/Models/BModal.dart';
 import 'package:pujapurohit/Pages/PanditSection/Widgets/responsive.dart';
-import 'package:pujapurohit/SignIn/AuthController.dart';
-import 'package:pujapurohit/SignIn/login.dart';
-import 'package:pujapurohit/Widgets/Loader.dart';
-import 'package:pujapurohit/Widgets/Texts.dart';
+import 'package:pujapurohit/SignIn/auth_controller.dart';
+import 'package:pujapurohit/SignIn/login_page.dart';
+import 'package:pujapurohit/Widgets/loader.dart';
+import 'package:pujapurohit/Widgets/texts.dart';
 import 'package:pujapurohit/Widgets/bottombar.dart';
 import 'package:pujapurohit/Widgets/newbottombar.dart';
 import 'package:pujapurohit/colors/light_colors.dart';
@@ -22,17 +22,17 @@ import 'package:pujapurohit/controller/LocationController.dart';
 import 'package:pujapurohit/controller/UserController.dart';
 import 'package:pujapurohit/controller/loginController.dart';
 import 'package:url_launcher/link.dart';
-import 'PanditSection/Controllers/DateContrller.dart';
-import 'PanditSection/Controllers/panditsController.dart';
-import 'PanditSection/Controllers/trendingController.dart';
-import 'PanditSection/Controllers/upcomigEvent.dart';
-import 'PanditSection/Widgets/Cards.dart';
-import 'PanditSection/Widgets/ImageView.dart';
+import 'PanditSection/Controllers/date_contrller.dart';
+import 'PanditSection/Controllers/pandits_controller.dart';
+import 'PanditSection/Controllers/trending_controller.dart';
+import 'PanditSection/Controllers/upcomig_event.dart';
+import 'PanditSection/Widgets/cards.dart';
+import 'PanditSection/Widgets/image_view.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'dart:html' as html;
 
-import 'locationChange.dart';
+import 'location_change.dart';
 
 class NewPanditHome extends StatefulWidget{
  

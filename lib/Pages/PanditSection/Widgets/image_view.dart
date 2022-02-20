@@ -18,13 +18,13 @@ import 'package:otp/otp.dart';
 import 'package:pujapurohit/Functions/ReverseGeocode.dart';
 import 'package:pujapurohit/Models/ItemsModal.dart';
 import 'package:pujapurohit/Models/VenderModal.dart';
-import 'package:pujapurohit/SignIn/AuthController.dart';
-import 'package:pujapurohit/Widgets/Loader.dart';
-import 'package:pujapurohit/Widgets/Texts.dart';
+import 'package:pujapurohit/SignIn/auth_controller.dart';
+import 'package:pujapurohit/Widgets/loader.dart';
+import 'package:pujapurohit/Widgets/texts.dart';
 import 'package:pujapurohit/colors/light_colors.dart';
 import 'package:pujapurohit/controller/LocationController.dart';
 import 'package:pujapurohit/controller/UserController.dart';
-import '../Profile.dart';
+import '../profile.dart';
 class AddressPage extends StatefulWidget{
 
   @override

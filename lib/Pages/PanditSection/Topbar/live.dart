@@ -1,16 +1,13 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:line_icons/line_icon.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:pujapurohit/Pages/PanditSection/Widgets/responsive.dart';
 import 'package:pujapurohit/Widgets/loader.dart';
 import 'package:pujapurohit/Widgets/texts.dart';
 import 'package:pujapurohit/Widgets/youtube_player.dart';
-import 'package:pujapurohit/controller/loaderController.dart';
 import 'package:url_launcher/link.dart';
 
 class Live extends StatelessWidget{
@@ -19,10 +16,10 @@ class Live extends StatelessWidget{
     
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    String LiveId = Get.parameters['liveId']!;
+    String liveId = Get.parameters['liveId']!;
     return Scaffold(
       body: StreamBuilder<DocumentSnapshot>(
-        stream: FirebaseFirestore.instance.collection('PujaPurohitFiles/sliders/second').doc('$LiveId').snapshots(),      
+        stream: FirebaseFirestore.instance.collection('PujaPurohitFiles/sliders/second').doc('$liveId').snapshots(),
         builder: (context, snapshot) {
           if(snapshot.data==null){
             return Loader();

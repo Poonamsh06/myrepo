@@ -17,7 +17,7 @@ void onInit(){
 }
  Stream<List<ServiceTopModal>> trendingStream() {
     return FirebaseFirestore.instance
-        .collection("Avaliable_pundit")
+        .collection("Available_pundit")
         .doc("$uid")
         .collection("Category").orderBy("name",descending: false)
         .snapshots()
@@ -50,7 +50,7 @@ class ServiceDetailController extends GetxController{
   }
   initializeServiceModel()  async{
     userModel.value =await FirebaseFirestore.instance
-        .collection('Avaliable_pundit/$uid/puja_offering')
+        .collection('Available_pundit/$uid/puja_offering')
         .doc('$sid')
         .get()
         .then((doc) => ServiceModal.fromSnapshot(doc));

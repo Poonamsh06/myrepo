@@ -1,39 +1,18 @@
-import 'dart:io';
 import 'dart:typed_data';
-import 'package:carousel_slider/carousel_controller.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'package:get/get.dart';
-import 'package:http/http.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:line_icons/line_icons.dart';
-import 'package:pujapurohit/Pages/new_pandit_home.dart';
-import 'package:pujapurohit/Pages/PanditSection/Controllers/event_controller.dart';
-import 'package:pujapurohit/Pages/PanditSection/Widgets/responsive.dart';
 import 'package:pujapurohit/SignIn/auth_controller.dart';
 import 'package:pujapurohit/SignIn/login_page.dart';
 import 'package:pujapurohit/Widgets/loader.dart';
 import 'package:pujapurohit/Widgets/texts.dart';
 import 'package:pujapurohit/colors/light_colors.dart';
-import 'package:pujapurohit/controller/UserController.dart';
 import 'package:pujapurohit/controller/loaderController.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:firebase_core/firebase_core.dart' as firebase_core;
-import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
-import 'package:image_picker/image_picker.dart';
-import 'package:uuid/uuid.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:wc_flutter_share/wc_flutter_share.dart';
 import 'dart:ui' as ui;
-import '../Controllers/pandits_controller.dart';
-import '../detail.dart';
 
 class ImageView extends StatefulWidget{
 
@@ -44,18 +23,18 @@ class ImageView extends StatefulWidget{
 
 class _ImageViewState extends State<ImageView> {
   final LoadController loadController = Get.put(LoadController());
-  GlobalKey _ssglobalKey = GlobalKey();
+  GlobalKey ssglobalKey = GlobalKey();
   String id = Get.parameters["id"]!;
   String vote = Get.parameters["vote"]!;
   String name = Get.parameters["name"]!;
   _saveScreen() async {
     loadController.updateLoad();
-    RenderRepaintBoundary boundary = _ssglobalKey.currentContext!
+    RenderRepaintBoundary boundary = ssglobalKey.currentContext!
         .findRenderObject() as RenderRepaintBoundary;
-    ui.Image imageo = await boundary.toImage(pixelRatio: 10);
+    ui.Image image = await boundary.toImage(pixelRatio: 10);
 
     ByteData? byteData =
-    await (imageo.toByteData(format: ui.ImageByteFormat.png));
+    await (image.toByteData(format: ui.ImageByteFormat.png));
     if (byteData != null) {
       final result =
       await ImageGallerySaver.saveImage(byteData.buffer.asUint8List());
@@ -77,15 +56,7 @@ class _ImageViewState extends State<ImageView> {
       }
     }
   }
-  // _requestPermission() async {
-  //   Map<Permission, PermissionStatus> statuses = await [
-  //     Permission.storage,
-  //   ].request();
 
-  //   final info = statuses[Permission.storage].toString();
-
-  //   // _toastInfo(info);
-  // }
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -134,7 +105,7 @@ class _ImageViewState extends State<ImageView> {
                           height: height*0.5,
                           child: InteractiveViewer(
                               child: RepaintBoundary(
-                                  key: _ssglobalKey,
+                                  key: ssglobalKey,
                                   child: Image.network("${snapshot.data!.get("image")}",fit: BoxFit.fill,))),
                         ),
                         SizedBox(height: 20,),
@@ -166,22 +137,22 @@ class _ImageViewState extends State<ImageView> {
                                 return Loader();
                               }
                               List<dynamic> voters = mainsnapshot.data!.get("${name}V");
-                              List<dynamic> local_voters = snapshot.data!.get("voters");
+                              List<dynamic> localVoters = snapshot.data!.get("voters");
                               return InkWell(
                                 onTap: (){
                                   if(voters.contains(authController.user!.phoneNumber)){
-                                  if(local_voters.contains(authController.user!.phoneNumber)){
-                                    List<dynamic> total_V= voters;
+                                  if(localVoters.contains(authController.user!.phoneNumber)){
+                                    List<dynamic> totalV= voters;
                                     voters.contains('${authController.user!.phoneNumber}')?voters.remove('${authController.user!.phoneNumber}'):(){};
 
                                     FirebaseFirestore.instance.doc("PujaPurohitFiles/events").update({
-                                      '${name}V':total_V
+                                      '${name}V':totalV
                                     });
-                                    List<dynamic> total_L= local_voters;
-                                    local_voters.contains('${authController.user!.phoneNumber}')?local_voters.remove('${authController.user!.phoneNumber}'):(){};
+                                    List<dynamic> totalL= localVoters;
+                                    localVoters.contains('${authController.user!.phoneNumber}')?localVoters.remove('${authController.user!.phoneNumber}'):(){};
 
                                     FirebaseFirestore.instance.doc("PujaPurohitFiles/events/$name/$id").update({
-                                      'voters':total_L,
+                                      'voters':totalL,
                                       'votes':FieldValue.increment(-1)
                                     });
                                   }
@@ -192,17 +163,17 @@ class _ImageViewState extends State<ImageView> {
 
                                   }
                                   else{
-                                    List<dynamic> total_V= voters;
+                                    List<dynamic> totalV= voters;
                                     voters.contains('${authController.user!.phoneNumber}')?(){}:voters.add('${authController.user!.phoneNumber}');
 
                                     FirebaseFirestore.instance.doc("PujaPurohitFiles/events").update({
-                                      '${name}V':total_V
+                                      '${name}V':totalV
                                     });
-                                    List<dynamic> total_L= local_voters;
-                                    local_voters.contains('${authController.user!.phoneNumber}')?(){}:local_voters.add('${authController.user!.phoneNumber}');
+                                    List<dynamic> totalL= localVoters;
+                                    localVoters.contains('${authController.user!.phoneNumber}')?(){}:localVoters.add('${authController.user!.phoneNumber}');
 
                                     FirebaseFirestore.instance.doc("PujaPurohitFiles/events/$name/$id").update({
-                                      'voters':total_L,
+                                      'voters':totalL,
                                       'votes':FieldValue.increment(1)
                                     });
                                   }
@@ -210,13 +181,13 @@ class _ImageViewState extends State<ImageView> {
                                 child: Container(
                                   padding: EdgeInsets.all(10),
                                   decoration: BoxDecoration(
-                                      color:local_voters.contains(authController.user!.phoneNumber)?Color(0xff181c2c):Colors.white,
+                                      color:localVoters.contains(authController.user!.phoneNumber)?Color(0xff181c2c):Colors.white,
                                       boxShadow: [
                                         BoxShadow(color: LightColors.shadowColor,blurRadius: 20)
                                       ],
                                       borderRadius: BorderRadius.circular(20)
                                   ),
-                                  child: Text1(data: local_voters.contains(authController.user!.phoneNumber)?"Upvoted":"Upvote", max: 24, min: 20,clr:local_voters.contains(authController.user!.phoneNumber)?Colors.white:Color(0xff181c2c),weight: FontWeight.w500,),
+                                  child: Text1(data: localVoters.contains(authController.user!.phoneNumber)?"Upvoted":"Upvote", max: 24, min: 20,clr:localVoters.contains(authController.user!.phoneNumber)?Colors.white:Color(0xff181c2c),weight: FontWeight.w500,),
                                 ),
                               );
                             }
@@ -236,7 +207,7 @@ class _ImageViewState extends State<ImageView> {
                               itemCount: snapshot.data!.get("voters").length,
                               itemBuilder: (_,index){
                                 List<dynamic> numbers = snapshot.data!.get("voters");
-                                return Text1(data: "${index} : ${numbers[index].toString().substring(0,5) }XXXX${numbers[index].toString().substring(9,13) }", max: 14 , min: 11,clr: Colors.black54,);
+                                return Text1(data: "$index : ${numbers[index].toString().substring(0,5) }XXXX${numbers[index].toString().substring(9,13) }", max: 14 , min: 11,clr: Colors.black54,);
                               }),
                         )
                       ],

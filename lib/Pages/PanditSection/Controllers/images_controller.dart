@@ -20,7 +20,7 @@ class ImageController extends GetxController{
   }
   initializeImagesModel()  async{
     userModel.value =await FirebaseFirestore.instance
-        .collection('Avaliable_pundit/$uid/gallery')
+        .collection('Available_pundit/$uid/gallery')
         .doc('pics')
         .get()
         .then((doc) => ImagesModel.fromSnapshot(doc));

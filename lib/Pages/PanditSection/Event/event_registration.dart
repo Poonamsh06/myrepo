@@ -1,43 +1,21 @@
 
 import 'dart:io';
-import 'dart:typed_data';
-import 'package:carousel_slider/carousel_controller.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'package:get/get.dart';
-import 'package:http/http.dart';
-import 'package:image_gallery_saver/image_gallery_saver.dart';
+
 import 'package:image_picker/image_picker.dart';
-import 'package:line_icons/line_icons.dart';
 import 'package:pujapurohit/Pages/Checkout/stripe_checkout_web.dart';
-import 'package:pujapurohit/Pages/new_pandit_home.dart';
 import 'package:pujapurohit/Pages/PanditSection/Controllers/event_controller.dart';
 import 'package:pujapurohit/Pages/PanditSection/Widgets/responsive.dart';
 import 'package:pujapurohit/SignIn/auth_controller.dart';
 import 'package:pujapurohit/Widgets/loader.dart';
 import 'package:pujapurohit/Widgets/texts.dart';
 import 'package:pujapurohit/colors/light_colors.dart';
-import 'package:pujapurohit/controller/UserController.dart';
 import 'package:pujapurohit/controller/loaderController.dart';
-import 'package:share_plus/share_plus.dart';
-import 'package:firebase_core/firebase_core.dart' as firebase_core;
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
-import 'package:image_picker/image_picker.dart';
 import 'package:uuid/uuid.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:wc_flutter_share/wc_flutter_share.dart';
-import 'dart:ui' as ui;
-import '../Controllers/pandits_controller.dart';
-import '../detail.dart';
-import 'dart:html' as html;
-import 'dart:convert';
-import 'dart:js';
 
 
 class RegistrationForm extends StatefulWidget{
@@ -53,9 +31,9 @@ enum AppState {
 class _RegistrationFormState extends State<RegistrationForm> {
   final RegistrationField registerForm = Get.put(RegistrationField());
   late AppState appstate;
-  File? SelectImageFile;
+  File? selectImageFile;
   File? imageFile;
-  String indx = Get.parameters["id"]!;
+  String index = Get.parameters["id"]!;
   List<XFile>? _imageFileList;
   final LoadController loadController = Get.put(LoadController());
   XFile? imageFile1;
@@ -187,11 +165,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                                         height: ResponsiveWidget.isSmallScreen(context)? height*0.3:ResponsiveWidget.isSmallScreen(context)? height*0.25: height*0.3,
                                         width: ResponsiveWidget.isSmallScreen(context)?width*0.5 :width*0.2,
                                         decoration: BoxDecoration(
-                                           // color: context.theme.backgroundColor,
-                                          // borderRadius: BorderRadius.circular(20),
-                                          //   boxShadow: [
-                                          //     BoxShadow(color: LightColors.shadowColor,blurRadius: 20)
-                                          //   ]
+
                                         ),
                                         child:ListView.builder(
                                                     physics: NeverScrollableScrollPhysics(),
@@ -280,10 +254,10 @@ class _RegistrationFormState extends State<RegistrationForm> {
                                      DropdownButton<String>(
                                          focusColor:Colors.white,
                                          value: _chosenValue,
-                                         //elevation: 5,
+
                                          style: TextStyle(color: Colors.white),
                                          iconEnabledColor:Colors.grey,
-                                         items: events[int.parse(indx)]["age"]!.cast<String>().map<DropdownMenuItem<String>>((String value) {
+                                         items: events[int.parse(index)]["age"]!.cast<String>().map<DropdownMenuItem<String>>((String value) {
                                            return DropdownMenuItem<String>(
                                              value: value,
                                              child: Text(value,style:TextStyle(color:Colors.grey),),
@@ -311,7 +285,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                                          //elevation: 5,
                                          style: TextStyle(color: Colors.white),
                                          iconEnabledColor:Colors.grey,
-                                         items: events[int.parse(indx)]["gender"]!.cast<String>().map<DropdownMenuItem<String>>((String value) {
+                                         items: events[int.parse(index)]["gender"]!.cast<String>().map<DropdownMenuItem<String>>((String value) {
                                            return DropdownMenuItem<String>(
                                              value: value,
                                              child: Text(value,style:TextStyle(color:Colors.grey),),
@@ -341,7 +315,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                                   return loadController.load.value.active?SizedBox(height: 50,width: 50,child: Loader(),):ElevatedButton(onPressed: ()async{
                                     final EventControllerPayment eventControllerPayment = Get.put(EventControllerPayment());
                                     registerForm.checkLogin();
-                                    if(events[int.parse(indx)]["price"]==0){
+                                    if(events[int.parse(index)]["price"]==0){
                                       if(name==null || _imageFileList ==null || _chosenValue==null || _chosenValueG ==null){
                                         return Get.snackbar("Info", "Please fill all fields properly",backgroundColor: Colors.white);
                                       }
@@ -351,7 +325,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                                         
                                         Future.delayed(Duration(seconds: 10),
                                                 ()async{
-                                              await FirebaseFirestore.instance.doc("PujaPurohitFiles/events/${events[int.parse(indx)]["name"]}/${authController.user!.uid}").set({
+                                              await FirebaseFirestore.instance.doc("PujaPurohitFiles/events/${events[int.parse(index)]["name"]}/${authController.user!.uid}").set({
                                                 'name': "$name",
                                                 'age':_chosenValue,
                                                 'votes':0,
@@ -359,17 +333,17 @@ class _RegistrationFormState extends State<RegistrationForm> {
                                                 'image':'$photoUrl',
                                                 'vote':false,
                                                 'gender':_chosenValueG,
-                                                'event':'${events[int.parse(indx)]["name"]}',
-                                                'num':FieldValue.increment(events[int.parse(indx)]["participants"]!.length+1),
+                                                'event':'${events[int.parse(index)]["name"]}',
+                                                'num':FieldValue.increment(events[int.parse(index)]["participants"]!.length+1),
                                                 'id':authController.user!.uid,
-                                                'puja':'${events[int.parse(indx)]["puja"]}',
+                                                'puja':'${events[int.parse(index)]["puja"]}',
                                                 'payment':false,
                                               }).whenComplete(() async{
-                                                List<dynamic> participants1 = snapshot.data!.get("${events[int.parse(indx)]["name"]}P");
+                                                List<dynamic> participants1 = snapshot.data!.get("${events[int.parse(index)]["name"]}P");
                                                 List<dynamic> total_V= participants1;
                                                 participants1.add(authController.user!.uid);
                                                 await FirebaseFirestore.instance.doc('/PujaPurohitFiles/events').update(({
-                                                  '${events[int.parse(indx)]["name"]}P':total_V
+                                                  '${events[int.parse(index)]["name"]}P':total_V
                                                 }));
                                                 Get.back();
                                                 loadController.updateLoad();
@@ -387,11 +361,10 @@ class _RegistrationFormState extends State<RegistrationForm> {
                                         loadController.updateLoad();
                                         uploadImage(context);  
                                             Future.delayed(Duration(seconds: 10),()async{
-                                              eventControllerPayment.updatePayment('$name','$_chosenValue','$photoUrl','$_chosenValueG','${events[int.parse(indx)]["name"]}',events[int.parse(indx)]["participants"]!.length,'${events[int.parse(indx)]["puja"]}',snapshot.data!.get("${events[int.parse(indx)]["name"]}P"));
+                                              eventControllerPayment.updatePayment('$name','$_chosenValue','$photoUrl','$_chosenValueG','${events[int.parse(index)]["name"]}',events[int.parse(index)]["participants"]!.length,'${events[int.parse(index)]["puja"]}',snapshot.data!.get("${events[int.parse(index)]["name"]}P"));
                                             }).whenComplete((){
-                                                     redirectToCheckout(context,int.parse(indx));
-                                                    // Get.toNamed('/success?id=$indx');
-                                                    // loadController.updateLoad();
+                                                     redirectToCheckout(context,int.parse(index));
+
                                             });                                                                                      
                                       }
                                     }
@@ -408,7 +381,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                   SizedBox(height: 10,),
                       Text1(data: "Note :", max: 24, min: 20,clr: Colors.black54,weight: FontWeight.w600,),
                       SizedBox(height: 10,),
-                      Text1(data: "${events[int.parse(indx)]["note"]}", max: 16, min: 12,clr: Colors.black54,)
+                      Text1(data: "${events[int.parse(index)]["note"]}", max: 16, min: 12,clr: Colors.black54,)
                     ],
                   ),
                 ),
@@ -459,20 +432,23 @@ class RegistrationField extends GetxController{
     }
     return null;
   }
-  String? validateemail(String value){
+  String? validateMail(String value){
     if(!GetUtils.isEmail(value)){
       return "Not valid email";
     }
+    return null;
   }
-  String? validataddress(String value){
+  String? validateAddress(String value){
     if(value.length<5){
       return "Not valid address";
     }
+    return null;
   }
-  String? validatename(String value){
+  String? validateName(String value){
     if(value.length>15 && value.length<1){
       return "Enter Shopname in less than 15 letter's";
     }
+    return null;
   }
   void checkLogin(){
     final isValid=loginFormKey.currentState!.validate();

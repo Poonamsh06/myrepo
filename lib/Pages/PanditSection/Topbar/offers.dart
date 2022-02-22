@@ -1,8 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pujapurohit/Pages/PanditSection/Widgets/responsive.dart';
 import 'package:pujapurohit/Widgets/loader.dart';
 import 'package:pujapurohit/Widgets/texts.dart';
 import 'package:pujapurohit/Widgets/bottombar.dart';
@@ -13,7 +11,7 @@ class Offer extends StatelessWidget{
   Widget build(BuildContext context) {
     double height = Get.height;
     double width = Get.width;
-    String offerid = Get.parameters['offer']!;
+    String offerId = Get.parameters['offer']!;
     return Scaffold(
       backgroundColor:Colors.white,
       body: Stack(
@@ -24,7 +22,7 @@ class Offer extends StatelessWidget{
               crossAxisAlignment:CrossAxisAlignment.start,
               children: [
                   StreamBuilder<DocumentSnapshot>(
-                  stream: FirebaseFirestore.instance.collection('PujaPurohitFiles/sliders/second').doc('$offerid').snapshots(),                    
+                  stream: FirebaseFirestore.instance.collection('PujaPurohitFiles/sliders/second').doc('$offerId').snapshots(),
                   builder: (context, snapshot) {
                     if(snapshot.data == null){
                       return SizedBox(
@@ -80,7 +78,7 @@ class Offer extends StatelessWidget{
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: l2,)      ,
                                 SizedBox(height:15),
-                              Text2(data:"Offer Eligiblity", max: 12),
+                              Text2(data:"Offer Eligibility", max: 12),
                               SizedBox(
                                 height: 5,
                               ),

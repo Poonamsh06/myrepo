@@ -13,68 +13,30 @@ class EventController extends GetxController{
       val.gender= gender;
     });
   }
-  updatePrevious(String BigS,String youtube,String place,String status,String image,String name,String  about,String duration,String total_days ,List<dynamic> top3,List<dynamic> participants){
+  updatePrevious(String bigs,String youtube,String place,String status,String image,String name,String  about,String duration,String totalDays ,List<dynamic> top3,List<dynamic> participants){
     eventData.update((val) {
       val!.about = about;
       val.image = image;
       val.name = name;
       val.top3 = top3;
       val.duration = duration;
-      val.total_days = total_days;// Container(
-          //   alignment: Alignment.centerLeft,
-          //  height: height*0.2,
-          //   color: Color(0xff181c2c),
-          //   padding: EdgeInsets.all(30),
-          //   child: Column(
-          //     crossAxisAlignment: CrossAxisAlignment.center,
-          //     children: [
-          //       SizedBox(height: 20,),
-          //       Row(
-          //         mainAxisAlignment: MainAxisAlignment.center,
-          //         children: [
-          //           Text1(data: "Events", max: 24, min: 20,weight: FontWeight.w600,clr: Colors.white,),
-          //         ],
-          //       ),
-          //        SizedBox(height: 20,),
-          //       Row(
-          //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //         children: [
-          //           Column(
-          //             children: [
-          //               Text1(data: "Participated", max: 14, min: 10,clr: Colors.white,),
-          //               SizedBox(height: 5,),
-          //               Text1(data: "0", max: 12, min: 10,clr: Colors.white,),
-          //             ],
-          //           ),
-          //           Column(
-          //             children: [
-          //               Text1(data: "Won", max: 14, min: 10,clr: Colors.white,),
-          //               SizedBox(height: 5,),
-          //               Text1(data: "0", max: 12, min: 10,clr: Colors.white,),
-          //             ],
-          //           ),
-                
-          //         ],
-          //       )
-          //     ],
-          //   ),
-          // ),
+      val.totalDays = totalDays;
 
       val.status = status;
       val.place = place;
       val.participants = participants;
       val.youtube = youtube;
-      val.BigS = BigS;
+      val.bigs = bigs;
     });
 
   }
-  updateupcoming(String bigs,String youtube,String puja,dynamic price,String note,List<dynamic> age,List<dynamic> gender,String place,String status,String image,String name,String  about,String duration,String total_days ,List<dynamic> participants,List<dynamic> terms){
+  updateUpcoming(String bigs,String youtube,String puja,dynamic price,String note,List<dynamic> age,List<dynamic> gender,String place,String status,String image,String name,String  about,String duration,String totalDays ,List<dynamic> participants,List<dynamic> terms){
     eventData.update((val) {
       val!.about = about;
       val.image = image;
       val.name = name;
       val.duration = duration;
-      val.total_days = total_days;
+      val.totalDays = totalDays;
       val.status = status;
       val.place = place;
       val.participants = participants;
@@ -85,17 +47,17 @@ class EventController extends GetxController{
       val.price = price;
       val.puja = puja;
       val.youtube = youtube;
-      val.BigS = bigs;
+      val.bigs = bigs;
       
     });
   }
-  updateLive(String BigS,String youtube,dynamic price,String note,List<dynamic> age,List<dynamic> gender,String place,String status,String image,String name,String  about,String duration,String total_days ,List<dynamic> participants,List<dynamic> terms){
+  updateLive(String BigS,String youtube,dynamic price,String note,List<dynamic> age,List<dynamic> gender,String place,String status,String image,String name,String  about,String duration,String totalDays ,List<dynamic> participants,List<dynamic> terms){
     eventData.update((val) {
       val!.about = about;
       val.image = image;
       val.name = name;
       val.duration = duration;
-      val.total_days = total_days;
+      val.totalDays = totalDays;
       val.status = status;
       val.place = place;
       val.participants = participants;
@@ -105,7 +67,7 @@ class EventController extends GetxController{
       val.note = note;
       val.price = price;
       val.youtube = youtube;
-      val.BigS = BigS;
+      val.bigs = BigS;
     });
   }
   updateParticipants(List<dynamic> p){
@@ -113,7 +75,7 @@ class EventController extends GetxController{
   }
 }
 class EventData{
-  String? BigS;
+  String? bigs;
   String? youtube;
   String? puja;
   String? image;
@@ -123,7 +85,7 @@ class EventData{
   String? place;
   String? duration;
   String? about;
-  String? total_days;
+  String? totalDays;
   List<dynamic>? top3;
   List<dynamic>? terms;
   dynamic price;
@@ -131,7 +93,7 @@ class EventData{
   List<dynamic>?participants1;
   List<dynamic>? age;
   List<dynamic>? gender;
-  EventData({this.BigS,this.youtube,this.puja,this.participants1,this.total_days,this.top3,this.image,this.name,this.age,this.gender,this.note,this.status,this.place,this.duration,this.about,this.terms,this.participants});
+  EventData({this.bigs,this.youtube,this.puja,this.participants1,this.totalDays,this.top3,this.image,this.name,this.age,this.gender,this.note,this.status,this.place,this.duration,this.about,this.terms,this.participants});
 }
 
 class EventControllerPayment extends GetxController{

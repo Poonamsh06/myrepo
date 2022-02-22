@@ -2,36 +2,21 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
-import 'package:pujapurohit/Models/CalenderModal.dart';
-import 'package:pujapurohit/Pages/PanditSection/Controllers/calender_controller.dart';
 import 'package:pujapurohit/Pages/PanditSection/Controllers/date_contrller.dart';
 import 'package:pujapurohit/Pages/PanditSection/Widgets/responsive.dart';
-import 'package:pujapurohit/Widgets/loader.dart';
 import 'package:pujapurohit/Widgets/texts.dart';
 import 'package:pujapurohit/colors/light_colors.dart';
 import 'dart:math' as Math;
 import 'dart:ui' as ui;
 class Calender extends StatelessWidget{
-  //  var items = [
-  //   PlaceInfo('Dubai Mall Food Court', Color(0xff6DC8F3), Color(0xff73A1F9),
-  //       4.4, 'Dubai · In The Dubai Mall', 'Cosy · Casual · Good for kids'),
-  //   PlaceInfo('Hamriyah Food Court', Color(0xffFFB157), Color(0xffFFA057), 3.7,
-  //       'Sharjah', 'All you can eat · Casual · Groups'),
-  //   PlaceInfo('Gate of Food Court', Color(0xffFF5B95), Color(0xffF8556D), 4.5,
-  //       'Dubai · Near Dubai Aquarium', 'Casual · Groups'),
-  //   PlaceInfo('Express Food Court', Color(0xffD76EF5), Color(0xff8F7AFE), 4.1,
-  //       'Dubai', 'Casual · Good for kids · Delivery'),
-  //   PlaceInfo('BurJuman Food Court', Color(0xff42E695), Color(0xff3BB2B8), 4.2,
-  //       'Dubai · In BurJuman', '...'),
-  // ];
+
+
 
   var months = ['January','Feburary','March','April','May','June','July','August','September','October','November','December'];
   DateTime current = DateTime.now();
   @override
   Widget build(BuildContext context) {
-    //CalenderController calenderController = Get.put(CalenderController());
-    
+
     DateController dateController = Get.put(DateController());
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
@@ -151,44 +136,9 @@ class Calender extends StatelessWidget{
                      ],);
                    }),
                      SizedBox(height:20),
-                  //  Obx((){
-                  //    return  Container(
-                  //      child: GetX<CalenderController>(
-                  //       init: Get.put<CalenderController>(CalenderController(month: dateController.month.value)),
-                  //       builder: (CalenderController calenderController) {
-                  //         if (calenderController != null && calenderController.serviceTop != null) {
-                  //           return ResponsiveWidget.isSmallScreen(context) ?ListView.builder(
-                  //               physics: NeverScrollableScrollPhysics(),
-                  //               shrinkWrap: true,
-                  //               itemCount: calenderController.calenderList.value!.length,
-                  //               itemBuilder: (_, index) {
-                  //                 return calenderItems(calenderController.serviceTop![index],_borderRadius);
-                  //               },
-                  //             ):
-                  //             GridView.builder(
-                  //                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(  
-                  //                         crossAxisCount: ResponsiveWidget.isMediumScreen(context)?2:3,
-                  //                         crossAxisSpacing: 50
-                  //                        // mainAxisSpacing: 10,
 
-                  //                     ),  
-                  //                   physics: NeverScrollableScrollPhysics(),
-                  //                   shrinkWrap: true,
-                  //                   itemCount: calenderController.calenderList.value!.length,
-                  //                   itemBuilder: (_, index) {
-                  //                     return calenderItems(calenderController.serviceTop![index],_borderRadius);
-                  //                   }, 
-                  //                 );
-                              
-                  //         } else {
-                  //           return Center(child: SizedBox(
-                  //               height: 50,width: 50,
-                  //               child: Loader()));
-                  //         }
-                  //       },
-                  //     ),
-                  //    );
-                  //  })
+
+
                      Obx((){
                        return  Container(
                         height: height*0.8,
@@ -208,8 +158,8 @@ class Calender extends StatelessWidget{
                                 final year = i.get('year');
                                 final month = i.get('month');
                                 final vikram = i.get('vikram');
-                                final english_date = i.get('english');
-                              final cardWidget = calenderItems(date, month, year, name, image, vikram, color1, color2, _borderRadius,english_date);
+                                final englishDate = i.get('english');
+                              final cardWidget = calenderItems(date, month, year, name, image, vikram, color1, color2, _borderRadius,englishDate);
                               cards.add(cardWidget);
                             }
                             return ResponsiveWidget.isSmallScreen(context) ?ListView(
@@ -247,16 +197,10 @@ class Calender extends StatelessWidget{
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(_borderRadius),
                                       gradient: LinearGradient(colors: [
-                                        Color(int.parse('${color1}')),
-                                        Color(int.parse('${color2}')),
+                                        Color(int.parse('$color1')),
+                                        Color(int.parse('$color2')),
                                       ], begin: Alignment.topLeft, end: Alignment.bottomRight),
-                                      // boxShadow: [
-                                      //   BoxShadow(
-                                      //     color:  Color(int.parse('${color2}')),
-                                      //     blurRadius: 12,
-                                      //     offset: Offset(0, 6),
-                                      //   ),
-                                      // ],
+
                                     ),
                                   ),
                                   Positioned(
@@ -266,7 +210,7 @@ class Calender extends StatelessWidget{
                                     child: CustomPaint(
                                       size: Size(100, 150),
                                       painter: CustomCardShapePainter(_borderRadius,
-                                           Color(int.parse('${color1}')), Color(int.parse('${color2}')),)
+                                           Color(int.parse('$color1')), Color(int.parse('$color2')),)
                                     ),
                                   ),
                                   Positioned.fill(
@@ -289,7 +233,7 @@ class Calender extends StatelessWidget{
                                             children: <Widget>[
                                               Text1(data: name, max: 14, min: 12,clr:Colors.white),
                                               SizedBox(height:5),
-                                             Text1(data: '${month} ${year}', max: 14, min: 12,clr:Colors.white),
+                                             Text1(data: '$month $year', max: 14, min: 12,clr:Colors.white),
                                               SizedBox(height: 16),
                                               Column(
                                                 children: [
@@ -335,14 +279,14 @@ class Calender extends StatelessWidget{
                                             mainAxisSize: MainAxisSize.min,
                                             children: <Widget>[
                                               Text(
-                                                '${date}',
+                                                '$date',
                                                 style: TextStyle(
                                                     color: Colors.white,
                                                     fontFamily: 'Avenir',
                                                     fontSize: 18,
                                                     fontWeight: FontWeight.w700),
                                               ),
-                                            // RatingBar(rating: items[index].rating),
+
                                             ],
                                           ),
                                         ),
@@ -383,17 +327,7 @@ class Slide2Clipper extends CustomClipper<Path>{
 
 }
 
-// class PlaceInfo {
-//   final String name;
-//   final String category;
-//   final String location;
-//   final double rating;
-//   final Color startColor;
-//   final Color endColor;
 
-//   PlaceInfo(this.name, this.startColor, this.endColor, this.rating,
-//       this.location, this.category);
-// }
 
 class CustomCardShapePainter extends CustomPainter {
   final double radius;

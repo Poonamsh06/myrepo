@@ -33,14 +33,12 @@ class BookingController extends GetxController{
 }
 
 class BookingDetailController extends GetxController{
-  // final String? id;
-  // PanditDetailController({this.id});
+
   Rx<BookingModal> bookingModel = BookingModal().obs;
 
 
   @override
   void onInit(){
-   // initializePanditModel();
 
     super.onInit();
   }

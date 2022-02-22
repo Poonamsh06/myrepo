@@ -90,7 +90,7 @@ class MyApp extends StatelessWidget{
         GetPage(name: '/profile', page:()=> Profile()),
         GetPage(name: '/serviceDetail', page:()=>ServiceDetail()),
         GetPage(name: '/address', page: ()=>AddressPage()),
-        GetPage(name: '/samagri', page: ()=>Samagri()),
+       // GetPage(name: '/samagri', page: ()=>Samagri()),
         GetPage(name: '/account', page:()=>Account()),
         GetPage(name: '/booking', page:()=>BookingFinish()),
         GetPage(name: '/locationchange', page: ()=>LocationChange()),

@@ -25,7 +25,7 @@ void onInit(){
 }
  Stream<List<BMModal>> panditStream() {
    GeoFirePoint center = geo.point(latitude: lat, longitude: lng);
-   final reference = FirebaseFirestore.instance.collection('Avaliable_pundit');
+   final reference = FirebaseFirestore.instance.collection('Available_pundit');
     final stream = geo.collection(collectionRef: reference).within(center: center, radius: radius, field: field);
    
    return stream
@@ -41,7 +41,7 @@ void onInit(){
 
   Stream<List<BMModal>> panditKeywordStream(String where,String what) {
    GeoFirePoint center = geo.point(latitude: lat, longitude: lng);
-   final reference = FirebaseFirestore.instance.collection('Avaliable_pundit').where(where,isEqualTo:what);
+   final reference = FirebaseFirestore.instance.collection('Available_pundit').where(where,isEqualTo:what);
     final stream = geo.collection(collectionRef: reference).within(center: center, radius: radius, field: field);
    
    return stream
@@ -74,7 +74,7 @@ class PanditDetailController extends GetxController{
   }
   initializePanditModel()  async{
     userModel.value =await FirebaseFirestore.instance
-        .collection('Avaliable_pundit')
+        .collection('Available_pundit')
         .doc('$uid')
         .get()
         .then((doc) => BMModal.fromSnapshot(doc));
@@ -104,7 +104,7 @@ void onInit(){
 
   Stream<List<BMModal>> panditKeywordStream() {
    GeoFirePoint center = geo.point(latitude: lat, longitude: lng);
-   final reference = FirebaseFirestore.instance.collection('Avaliable_pundit').where('PujaKeywords',arrayContains: what);
+   final reference = FirebaseFirestore.instance.collection('Available_pundit').where('PujaKeywords',arrayContains: what);
     final stream = geo.collection(collectionRef: reference).within(center: center, radius: radius, field: field);
    
    return stream

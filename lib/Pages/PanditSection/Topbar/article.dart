@@ -27,29 +27,27 @@ class _VaratState extends State<Varat> {
     String somesnaps =
         'Healty safe cotton motoposatima evergreen samphonisis got healness too the organiyaplanophisis. Update to avagardo ultaplosis';
     return Scaffold(
-     appBar: PreferredSize(preferredSize: Size(width,height*0.099,), 
-      child:TopTabs()
-      
-      
-      ),
+      appBar: PreferredSize(
+          preferredSize: Size(
+            width,
+            height * 0.099,
+          ),
+          child: TopTabs()),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Column(
           children: [
             Stack(
               children: [
-             
                 Container(
                     height: height,
                     width: width,
-                    padding: EdgeInsets.only(top: 10, ),
-                    //margin: EdgeInsets.only(top: height * 0.15),
+                    padding: EdgeInsets.only(
+                      top: 10,
+                    ),
                     decoration: BoxDecoration(
-                        // color: Colors.white,
-                        // borderRadius: BorderRadius.only(
-                        //     topLeft: Radius.circular(width * 0.1),
-                        //     topRight: Radius.circular(width * 0.1))
-                            ),
+
+                        ),
                     child: StreamBuilder<DocumentSnapshot>(
                         stream: FirebaseFirestore.instance
                             .doc('PujaPurohitFiles/Article')
@@ -58,67 +56,76 @@ class _VaratState extends State<Varat> {
                           if (snapshot.data == null) {
                             return Loader();
                           }
-                          List<dynamic> articles = snapshot.data!.get('articles');
-                          articles.sort((a, b) => (b["time"]).compareTo(a["time"]));
-                         // List<dynamic> sortedArticle = articles.);
-                          return ResponsiveWidget.isSmallScreen(context)?ListView.builder(
-                              shrinkWrap: true,
-                              //physics: NeverScrollableScrollPhysics(),
-                              scrollDirection: Axis.vertical,
-                              itemCount: articles.length,
-                              itemBuilder: (_, index) {
-                                List<dynamic> content = articles[index]['content'];
-                                List<dynamic> likes = articles[index]['likes'];
-                                return articleCards(
-                                    articles[index],
-                                    likes,
-                                    width,
-                                    height,
-                                    somesnaps,
-                                    articles[index]['img'],
-                                    articles[index]['title'],
-                                    articles[index]['sender'],
-                                    articles[index]['sender_img'],
-                                    content[0]['data'],
-                                    content,
-                                    articles[index]['time'],
-                                    articles[index]['views']);
-                                //return Text("hi");
-                              }):    GridView.builder(
-                                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(  
-                                       crossAxisCount: ResponsiveWidget.isMediumScreen(context)?2:3,
-                                        crossAxisSpacing: 10,
-                                        mainAxisSpacing: 10,
-                                       childAspectRatio: ResponsiveWidget.isMediumScreen(context) ?0.5:0.5,
-
-                                  ),  
-                                physics: NeverScrollableScrollPhysics(),
-                                shrinkWrap: true,
-                                itemCount: articles.length,
-                                itemBuilder: (_, index) {
-                                   List<dynamic> content = articles[index]['content'];
-                                List<dynamic> likes = articles[index]['likes'];
-                                  return articleCards(
-                                    articles[index],
-                                    likes,
-                                    width,
-                                    height,
-                                    somesnaps,
-                                    articles[index]['img'],
-                                    articles[index]['title'],
-                                    articles[index]['sender'],
-                                    articles[index]['sender_img'],
-                                    content[0]['data'],
-                                    content,
-                                    articles[index]['time'],
-                                    articles[index]['views']);
-                                }, 
-                              );
+                          List<dynamic> articles =
+                              snapshot.data!.get('articles');
+                          articles
+                              .sort((a, b) => (b["time"]).compareTo(a["time"]));
+                          return ResponsiveWidget.isSmallScreen(context)
+                              ? ListView.builder(
+                                  shrinkWrap: true,
+                                  //physics: NeverScrollableScrollPhysics(),
+                                  scrollDirection: Axis.vertical,
+                                  itemCount: articles.length,
+                                  itemBuilder: (_, index) {
+                                    List<dynamic> content =
+                                        articles[index]['content'];
+                                    List<dynamic> likes =
+                                        articles[index]['likes'];
+                                    return articleCards(
+                                        articles[index],
+                                        likes,
+                                        width,
+                                        height,
+                                        somesnaps,
+                                        articles[index]['img'],
+                                        articles[index]['title'],
+                                        articles[index]['sender'],
+                                        articles[index]['sender_img'],
+                                        content[0]['data'],
+                                        content,
+                                        articles[index]['time'],
+                                        articles[index]['views']);
+                                    //return Text("hi");
+                                  })
+                              : GridView.builder(
+                                  gridDelegate:
+                                      SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount:
+                                        ResponsiveWidget.isMediumScreen(context)
+                                            ? 2
+                                            : 3,
+                                    crossAxisSpacing: 10,
+                                    mainAxisSpacing: 10,
+                                    childAspectRatio:
+                                        ResponsiveWidget.isMediumScreen(context)
+                                            ? 0.5
+                                            : 0.5,
+                                  ),
+                                  physics: NeverScrollableScrollPhysics(),
+                                  shrinkWrap: true,
+                                  itemCount: articles.length,
+                                  itemBuilder: (_, index) {
+                                    List<dynamic> content =
+                                        articles[index]['content'];
+                                    List<dynamic> likes =
+                                        articles[index]['likes'];
+                                    return articleCards(
+                                        articles[index],
+                                        likes,
+                                        width,
+                                        height,
+                                        somesnaps,
+                                        articles[index]['img'],
+                                        articles[index]['title'],
+                                        articles[index]['sender'],
+                                        articles[index]['sender_img'],
+                                        content[0]['data'],
+                                        content,
+                                        articles[index]['time'],
+                                        articles[index]['views']);
+                                  },
+                                );
                         }))
-              
-              
-              
-              
               ],
             ),
           ],
@@ -136,12 +143,11 @@ class _VaratState extends State<Varat> {
       String image,
       String title,
       Sender,
-      Sender_img,
+      SenderImg,
       String firstpara,
       List<dynamic> content,
       Timestamp time,
       var views) {
-    
     final ArticleController articleController = Get.put(ArticleController());
     final AuthController authController = Get.put(AuthController());
     DateTime date = time.toDate();
@@ -152,11 +158,11 @@ class _VaratState extends State<Varat> {
         Padding(
           padding: const EdgeInsets.all(20.0),
           child: SizedBox(
-            //width: width * 0.9,
+
             child: ListTile(
               leading: CircleAvatar(
                 backgroundColor: Colors.white,
-                backgroundImage: NetworkImage('$Sender_img'),
+                backgroundImage: NetworkImage('$SenderImg'),
               ),
               title: Text1(
                 data: "$Sender",
@@ -164,11 +170,14 @@ class _VaratState extends State<Varat> {
                 min: 12,
                 weight: FontWeight.bold,
               ),
-              subtitle: Text1(data: "${DateFormat.yMMMEd().format(date)},${DateFormat.jm().format(date)}", max: 12, min: 10,clr: Colors.black54,),
-              // trailing: Icon(
-              //   Icons.more_vert_outlined,
-              //   color: Colors.black54,
-              // ),
+              subtitle: Text1(
+                data:
+                    "${DateFormat.yMMMEd().format(date)},${DateFormat.jm().format(date)}",
+                max: 12,
+                min: 10,
+                clr: Colors.black54,
+              ),
+
             ),
           ),
         ),
@@ -179,7 +188,7 @@ class _VaratState extends State<Varat> {
           height: height * 0.3,
           width: width * 0.85,
           decoration: BoxDecoration(
-             // boxShadow: [BoxShadow(color: Color(0xFFE6E6E6), blurRadius: 20)],
+
               borderRadius: BorderRadius.all(Radius.circular(10)),
               image: DecorationImage(
                   image: NetworkImage('$image'), fit: BoxFit.contain)),
@@ -213,116 +222,27 @@ class _VaratState extends State<Varat> {
                           recognizer: TapGestureRecognizer()
                             ..onTap = () {
 
-                            //  setState(() {
-                            //    dynamic views = articles['views']+1;
-                            //    FirebaseFirestore.instance//ab chala k dekh
-                            //        .doc('PujaPurohitFiles/Article')
-                            //        .update({
-                            //      "articles": FieldValue.arrayUnion([
-                            //        {
-                            //          // 'comments': articles['comments'],//kya hua
-                            //          'img': articles['img'],
-                            //          'content': articles['content'],
-                            //          'likes': articles['likes'],
-                            //          'sender': articles['sender'],
-                            //          'sender_img': articles['sender_img'],
-                            //          'time': articles['time'],
-                            //          'views': views,
-                            //          'title': articles['title']
-                            //        }
-                            //      ])
-                            //    }).
-                            //    whenComplete(() {
-                            //      FirebaseFirestore.instance
-                            //          .doc('PujaPurohitFiles/Article')
-                            //          .update({
-                            //        "articles": FieldValue.arrayRemove([articles])
-                            //      });
-                            //    });
-                            //    articleController.updateSomeData(title, Sender,
-                            //        Sender_img, time, content, views, image,articles['likes'].length);
-                            //    Get.toNamed('/articledetail');
-                            //  });
-                             articleController.updateSomeData(title, Sender,
-                                   Sender_img, time, content, views, image,articles['likes'].length);
-                             
-                             Get.toNamed('/articledetail');
+
+                              articleController.updateSomeData(
+                                  title,
+                                  Sender,
+                                  SenderImg,
+                                  time,
+                                  content,
+                                  views,
+                                  image,
+                                  articles['likes'].length);
+
+                              Get.toNamed('/articledetail');
                             })
                     ]),
               ),
               SizedBox(
                 height: 15,
-              ),             
-              // Row(
-              //   children: [
-              //     InkWell(
-              //         onTap: () {
-
-              //           FirebaseFirestore.instance
-              //               .doc('PujaPurohitFiles/Article')
-              //               .update({
-              //             "articles": FieldValue.arrayRemove([articles])
-              //           }).whenComplete(() {
-              //             List<dynamic> likees = articles['likes'];
-              //             likes.contains('${authController.user!.uid}')?likees.remove('${authController.user!.uid}'):likees.add('${authController.user!.uid}');
-              //             FirebaseFirestore.instance//ab chala k dekh
-              //                 .doc('PujaPurohitFiles/Article')
-              //                 .update({
-              //               "articles": FieldValue.arrayUnion([
-              //                 {
-              //                   // 'comments': articles['comments'],//kya hua
-              //                   'img': articles['img'],
-              //                   'content': articles['content'],
-              //                   'likes': likees,
-              //                   'sender': articles['sender'],
-              //                   'sender_img': articles['sender_img'],
-              //                   'time': articles['time'],
-              //                   'views': articles['views'],
-              //                   'title': articles['title']
-              //                 }
-              //               ])
-              //             });
-              //           });
-              //         },
-              //         child: Icon(
-              //           CupertinoIcons.heart_fill,
-              //           color: likes.contains('${authController.user!.uid}')
-              //               ? LightColors.buttonColor
-              //               : Colors.black54,
-              //           size: 16,
-              //         )),
-              //     SizedBox(
-              //       width: 5,
-              //     ),
-              //     Text1(
-              //       data: '${likes.length}',
-              //       max: 11,
-              //       min: 10,
-              //       clr: Colors.black,
-              //     ),
-              //     SizedBox(
-              //       width: 10,
-              //     ),
-              //     Icon(
-              //       CupertinoIcons.eye_fill,
-              //       color: Colors.black54,
-              //       size: 16,
-              //     ),
-              //     SizedBox(
-              //       width: 5,
-              //     ),
-              //     Text1(
-              //       data: '$views',
-              //       max: 11,
-              //       min: 10,
-              //       clr: Colors.black,
-              //     ),
-              //   ],
-              // ),
-              
-              
-              
-              SizedBox(height: 50,),
+              ),
+              SizedBox(
+                height: 50,
+              ),
             ],
           ),
         ),
@@ -334,12 +254,12 @@ class _VaratState extends State<Varat> {
 class ArticleController extends GetxController {
   var articleData = ArticleData().obs;
 
-  updateSomeData(var title, var sender, var sender_image, Timestamp time,
-      List<dynamic> content, var views, String img,var likes) {
+  updateSomeData(var title, var sender, var senderImage, Timestamp time,
+      List<dynamic> content, var views, String img, var likes) {
     articleData.value.contents = content;
     articleData.value.title = title;
     articleData.value.sender = sender;
-    articleData.value.sender_image = sender_image;
+    articleData.value.senderImage = senderImage;
     articleData.value.time = time;
     articleData.value.views = views;
     articleData.value.img = img;
@@ -352,7 +272,7 @@ class ArticleData {
   var title;
   var likes;
   var sender;
-  var sender_image;
+  var senderImage;
   Timestamp? time;
   bool? liked;
   var totalLikes;
@@ -360,12 +280,11 @@ class ArticleData {
   List<dynamic>? contents;
 
   ArticleData(
-      {
-        this.likes,
-        this.img,
+      {this.likes,
+      this.img,
       this.title,
       this.sender,
-      this.sender_image,
+      this.senderImage,
       this.time,
       this.liked,
       this.totalLikes,
@@ -380,23 +299,25 @@ class ArticleDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-   // DateTime date = articleController.articleData.value.time!.toDate();
+    // DateTime date = articleController.articleData.value.time!.toDate();
     String somesnaps =
         'Healty safe cotton motoposatima evergreen samphonisis got healness too the organiyaplanophisis. Update to avagardo ultaplosis';
     return Scaffold(
-      appBar:PreferredSize(preferredSize: Size(width,height*0.099,), 
-      child:TopTabs()
-      
-      
-      ),
+      appBar: PreferredSize(
+          preferredSize: Size(
+            width,
+            height * 0.099,
+          ),
+          child: TopTabs()),
       body: Stack(
         children: [
           SingleChildScrollView(
             scrollDirection: Axis.vertical,
             child: Column(
               children: [
-                SizedBox(height: 25,),
-               
+                SizedBox(
+                  height: 25,
+                ),
                 Padding(
                   padding:
                       EdgeInsets.only(top: 20, left: 10, right: width * 0.1),
@@ -407,17 +328,17 @@ class ArticleDetail extends StatelessWidget {
                           leading: CircleAvatar(
                             backgroundColor: Colors.white,
                             backgroundImage: NetworkImage(
-                                '${articleController.articleData.value.sender_image}'),
+                                '${articleController.articleData.value.senderImage}'),
                           ),
                           title: Text1(
-                            data: "${articleController.articleData.value.sender}",
+                            data:
+                                "${articleController.articleData.value.sender}",
                             max: 14,
                             min: 12,
                             weight: FontWeight.bold,
                           ),
                           subtitle: Text1(
-                            data:
-                                "",
+                            data: "",
                             max: 12,
                             min: 10,
                             clr: Colors.black54,
@@ -435,7 +356,11 @@ class ArticleDetail extends StatelessWidget {
                           Text(
                             '${articleController.articleData.value.title}',
                             style: TextStyle(
-                                fontSize: ResponsiveWidget.isSmallScreen(context)? 18:36, fontWeight: FontWeight.bold),
+                                fontSize:
+                                    ResponsiveWidget.isSmallScreen(context)
+                                        ? 18
+                                        : 36,
+                                fontWeight: FontWeight.bold),
                           ),
                           SizedBox(
                             height: 10,
@@ -451,7 +376,8 @@ class ArticleDetail extends StatelessWidget {
                                 width: 5,
                               ),
                               Text1(
-                                data: '${articleController.articleData.value.likes}',
+                                data:
+                                    '${articleController.articleData.value.likes}',
                                 max: 11,
                                 min: 10,
                                 clr: Colors.black,
@@ -479,9 +405,6 @@ class ArticleDetail extends StatelessWidget {
                         ],
                       );
                     })),
-               
-               
-               
                 SizedBox(
                   height: 10,
                 ),
@@ -497,7 +420,13 @@ class ArticleDetail extends StatelessWidget {
                   height: 20,
                 ),
                 Padding(
-                   padding:EdgeInsets.only(left:ResponsiveWidget.isSmallScreen(context)? 10:width*0.1,right:ResponsiveWidget.isSmallScreen(context)? 10:width*0.1),
+                  padding: EdgeInsets.only(
+                      left: ResponsiveWidget.isSmallScreen(context)
+                          ? 10
+                          : width * 0.1,
+                      right: ResponsiveWidget.isSmallScreen(context)
+                          ? 10
+                          : width * 0.1),
                   child: Obx(() {
                     return ListView.builder(
                         shrinkWrap: true,
@@ -515,31 +444,33 @@ class ArticleDetail extends StatelessWidget {
                                   .articleData.value.contents![index]['type'],
                               articleController
                                   .articleData.value.contents![index]['bold'],
-                                  context
-                          );
-
+                              context);
                         });
                   }),
                 ),
-                ResponsiveWidget.isSmallScreen(context)?MobileBottomBar():NewBottomBar(),
+                ResponsiveWidget.isSmallScreen(context)
+                    ? MobileBottomBar()
+                    : NewBottomBar(),
                 SizedBox(
                   height: 10,
                 ),
               ],
             ),
           ),
-          
         ],
       ),
     );
   }
 
-  Padding articlePara(
-      double width, double height, String somesnaps, String data, String type,bool bold,BuildContext context) {
+  Padding articlePara(double width, double height, String somesnaps,
+      String data, String type, bool bold, BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(left: 20, right: width * 0.1, bottom: 15),
       child: type == 'txt'
-          ? Text(data, style: TextStyle(fontSize: ResponsiveWidget.isSmallScreen(context)?14:20,))
+          ? Text(data,
+              style: TextStyle(
+                fontSize: ResponsiveWidget.isSmallScreen(context) ? 14 : 20,
+              ))
           : SizedBox(
               height: height * 0.25,
               child: Image.network(

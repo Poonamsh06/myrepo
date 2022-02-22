@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -7,7 +6,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:pujapurohit/Pages/PanditSection/Controllers/pandits_controller.dart';
 import 'package:pujapurohit/Pages/PanditSection/Controllers/pujan_vidhi_controller.dart';
 import 'package:pujapurohit/Pages/PanditSection/detail.dart';
-import 'package:pujapurohit/Pages/PanditSection/Topbar/PujanVidhi/constants.dart';
 import 'package:pujapurohit/Pages/PanditSection/Widgets/responsive.dart';
 import 'package:pujapurohit/SignIn/auth_controller.dart';
 import 'package:pujapurohit/Widgets/loader.dart';
@@ -97,52 +95,39 @@ class PujanDetailsScreen extends StatelessWidget {
                       runSpacing: 20,
                       children: <Widget>[
                         SessionCard(
-                          pagenum: 0,
+                          pageNum: 0,
                           clr: '${pujanVidhiController.pujanModal.value.bg}',
-                          seassionNum: 1,
+                          sessionNum: 1,
                           isDone: true,
                           press: () {
 
                           },
                         ),
                         SessionCard(
-                          pagenum: 1,
+                          pageNum: 1,
                           clr: '${pujanVidhiController.pujanModal.value.bg}',
-                          seassionNum: 2,
+                          sessionNum: 2,
                           press: () {
                             Get.toNamed('/steps');
                           },
                         ),
                         SessionCard(
-                          pagenum: 2,
+                          pageNum: 2,
                           clr: '${pujanVidhiController.pujanModal.value.bg}',
-                          seassionNum: 3,
+                          sessionNum: 3,
                           press: () {
                             Get.toNamed('/steps');
                           },
                         ),
                         SessionCard(
-                          pagenum: 3,
+                          pageNum: 3,
                           clr: '${pujanVidhiController.pujanModal.value.bg}',
-                          seassionNum: 4,
+                          sessionNum: 4,
                           press: () {
                             Get.toNamed('/steps');
                           },
                         ),
-                        // SeassionCard(
-                        //   clr: '${pujanVidhiController.pujanModal.value.bg}',
-                        //   seassionNum: 5,
-                        //   press: () {
-                        //     Get.to(Steps());
-                        //   },
-                        // ),
-                        // SeassionCard(
-                        //   clr: '${pujanVidhiController.pujanModal.value.bg}',
-                        //   seassionNum: 6,
-                        //   press: () {
-                        //     Get.to(Steps());
-                        //   },
-                        // ),
+
                       ],
                     ),
                     SizedBox(height: 20),
@@ -160,57 +145,8 @@ class PujanDetailsScreen extends StatelessWidget {
 
                       max: 12, min: 11,clr: Colors.black87,),
                     SizedBox(height: 10,),
-                    // GetX<PanditKeywordController>(
-                    //     init:  Get.put<PanditKeywordController>(PanditKeywordController(what:'${pujanVidhiController.pujanModal.value.keyword}',lat: double.parse('${userController.userModel.value.lat}'),lng: double.parse('${userController.userModel.value.lng}'))),
-                    //     builder: (PanditKeywordController panditController){
-                    //       if(panditController.panditList.value!=null && panditController.pandits!=null ){
-                            
-                    //         if(panditController.pandits!.isEmpty == true){
-                    //           return Padding(
-                    //             padding: const EdgeInsets.only(top:30.0),
-                    //             child: Text5(data1: "No pandit in your area doing ${pujanVidhiController.pujanModal.value.name}",
-                    //                 data2: 'आपके क्षेत्र में कोई पंडित नहीं कर रहा ${pujanVidhiController.pujanModal.value.name}',
-                    //                 data3: 'আপনার এলাকায় কোন পণ্ডিত করছেন না ${pujanVidhiController.pujanModal.value.name}',
-                    //                 data4: 'உங்கள் பகுதியில் பண்டிதர் இல்லை ${pujanVidhiController.pujanModal.value.name}',
-                    //                 data5: 'మీ ప్రాంతంలో పండిట్ లేదు ${pujanVidhiController.pujanModal.value.name}',
-                    //                 data6: 'तुमच्या क्षेत्रात एकही पंडित करत नाही ${pujanVidhiController.pujanModal.value.name}',
-                    //                 data7: 'તમારા વિસ્તારમાં કોઈ પંડિત નથી ${pujanVidhiController.pujanModal.value.name}',
-                    //                 data8: 'ଆପଣଙ୍କ ଅଞ୍ଚଳରେ କ pand ଣସି ପଣ୍ଡିତ କରୁନାହାଁନ୍ତି | ${pujanVidhiController.pujanModal.value.name}',
-                    //                 data9: 'ਤੁਹਾਡੇ ਖੇਤਰ ਵਿੱਚ ਕੋਈ ਪੰਡਤ ਨਹੀਂ ਕਰ ਰਿਹਾ ${pujanVidhiController.pujanModal.value.name}',
-                    //                 data10: 'ನಿಮ್ಮ ಪ್ರದೇಶದಲ್ಲಿ ಯಾವುದೇ ಪಂಡಿತ ಮಾಡುತ್ತಿಲ್ಲ ${pujanVidhiController.pujanModal.value.name}',
-                    //                 max: 18, min: 12,clr:Colors.redAccent),
-                    //           );
-                    //         }
-                    //         if(panditController.pandits == null){
-                    //           return SizedBox(
-                    //             height: 200,
-                    //             child: Loader(),
-                    //           );
-                    //         }
-                    //         return SizedBox(
-                    //           height: 220.0,
-                    //           child: ListView.builder(
-                    //             scrollDirection: Axis.horizontal,
-                    //             itemCount:panditController.panditList.value!.length,
-                    //             itemBuilder: (BuildContext ctxt, int index) {
-                    //               if(authController.user!=null ){
-                    //                 final UserController  userController = Get.put(UserController());
-                    //                 return PanditNewCard(bmModal: panditController.pandits![index],lat: double.parse('${userController.userModel.value.lat}'),lng: double.parse('${userController.userModel.value.lng}'));
-                    //               }
-                    //               return PanditNewCard(bmModal: panditController.pandits![index],lat: double.parse('${userController.userModel.value.lat}'),lng: double.parse('${userController.userModel.value.lng}'));
-                                  
-                                 
-                    //             },
-                    //           ),
-                    //         );
-                    //       }
-                    //       else{
-                    //         return SizedBox(
-                    //           height: 200,
-                    //           child: Loader(),
-                    //         );
-                    //       }
-                    //     })
+
+
                   
                   
                   ],
@@ -232,7 +168,7 @@ class PujanDetailsScreen extends StatelessWidget {
                         return   GetX<PanditKeywordController>(
                           init:  Get.put<PanditKeywordController>(PanditKeywordController(what:'${snapshot.data!.get('pujakeyword')}',lat: double.parse('${userController.userModel.value.lat}'),lng: double.parse('${userController.userModel.value.lng}'))),
                           builder: (PanditKeywordController panditController) {
-                            if (panditController != null && panditController.pandits != null) {
+                            if (panditController.pandits != null) {
                               if(panditController.panditList.value!.isEmpty){
                                 return Padding(
                                   padding: const EdgeInsets.only(top:30.0),
@@ -247,7 +183,7 @@ class PujanDetailsScreen extends StatelessWidget {
                                       child: new ListView.builder(
                                         scrollDirection: Axis.horizontal,
                                         itemCount:panditController.panditList.value!.length,
-                                        itemBuilder: (BuildContext ctxt, int index) {
+                                        itemBuilder: (BuildContext context, int index) {
                                           return new PanditNewCard(bmModal: panditController.pandits![index],lat: double.parse('${userController.userModel.value.lat}'),lng: double.parse('${userController.userModel.value.lng}'));
                                         },
                                       ),
@@ -279,7 +215,7 @@ class PujanDetailsScreen extends StatelessWidget {
         return   GetX<PanditKeywordController>(
           init:  Get.put<PanditKeywordController>(PanditKeywordController(what:'${snapshot.data!.get('pujakeyword')}',lat: double.parse('${userController.location.value.lat}'),lng: double.parse('${userController.location.value.lng}'))),
           builder: (PanditKeywordController panditController) {
-            if (panditController != null && panditController.pandits != null) {
+            if (panditController.pandits != null) {
               if(panditController.panditList.value!.isEmpty){
                 return Padding(
                   padding: const EdgeInsets.only(top:30.0),
@@ -318,15 +254,15 @@ class PujanDetailsScreen extends StatelessWidget {
 }
 
 class SessionCard extends StatelessWidget {
-  final int? pagenum;
-  final int? seassionNum;
+  final int? pageNum;
+  final int? sessionNum;
   final bool? isDone;
   final VoidCallback? press;
   final String? clr;
   const SessionCard({
-    this.pagenum,
+    this.pageNum,
     this.clr,
-    this.seassionNum,
+    this.sessionNum,
     this.isDone = false,
     this.press,
   }) ;
@@ -358,7 +294,7 @@ class SessionCard extends StatelessWidget {
             color: Colors.transparent,
             child: InkWell(
               onTap: (){
-                vidhiController.updateInitialPage(pagenum!);
+                vidhiController.updateInitialPage(pageNum!);
                Get.toNamed('/steps');
               },
               child: Padding(
@@ -380,16 +316,16 @@ class SessionCard extends StatelessWidget {
                     ),),
                     SizedBox(width: 10),
                     Text5(
-                     data1: "Step $seassionNum",
-                      data2: 'चरण $seassionNum',
-                      data3: 'ধাপ $seassionNum',
-                      data4: 'படி $seassionNum',
-                      data5: 'దశ $seassionNum',
-                      data6: 'Step $seassionNum',
-                      data7: 'પગલું $seassionNum',
-                      data8: 'ପଦାଙ୍କ $seassionNum',
-                      data9: 'ਕਦਮ $seassionNum',
-                      data10: 'ಹಂತ $seassionNum',
+                     data1: "Step $sessionNum",
+                      data2: 'चरण $sessionNum',
+                      data3: 'ধাপ $sessionNum',
+                      data4: 'படி $sessionNum',
+                      data5: 'దశ $sessionNum',
+                      data6: 'Step $sessionNum',
+                      data7: 'પગલું $sessionNum',
+                      data8: 'ପଦାଙ୍କ $sessionNum',
+                      data9: 'ਕਦਮ $sessionNum',
+                      data10: 'ಹಂತ $sessionNum',
                       max: 16,min: 14,
                       //clr: Colors.white,
                       weight: FontWeight.bold,
@@ -449,39 +385,7 @@ class Steps extends StatelessWidget{
               Completion()
             ],
           ),
-            // Obx((){
-            //   return Align(
-            //     alignment: Alignment.bottomCenter,
-            //     child: Row(
-            //       mainAxisAlignment: MainAxisAlignment.center,
-            //       children: [
-            //         CircleAvatar(
-            //           radius:16,
-            //           backgroundColor: vidhiController.vidhiData.curentPage==0.0?Color(int.parse('${pujanVidhiController.pujanModal.value.bg}')):Colors.white,
-            //           child: vidhiController.vidhiData.curentPage==0.0?Text1(data: '1', max: 12, min: 11,clr: Colors.white,):Text1(data: '1', max: 12, min: 11,clr: Color(int.parse('${pujanVidhiController.pujanModal.value.bg}')),),
-            //         ),
-            //         DottedLine(
-            //           direction: Axis.horizontal,
-            //           lineLength: 30,
-            //           lineThickness: 1.0,
-            //           dashLength: 2.0,
-            //           dashColor: Colors.grey,
-            //           dashRadius: 0.0,
-            //           dashGapLength: 4.0,
-            //           dashGapColor: Colors.transparent,
-            //           dashGapRadius: 0.0,
-            //         ),
-            //         Obx((){
-            //           return CircleAvatar(
-            //             radius:16,
-            //             backgroundColor: vidhiController.vidhiData.curentPage==1.0?Color(int.parse('${pujanVidhiController.pujanModal.value.bg}')):Colors.white,
-            //             child: vidhiController.vidhiData.curentPage==1.0?Text1(data: '2', max: 12, min: 11,clr: Colors.white,):Text1(data: '2', max: 12, min: 11,clr: Color(int.parse('${pujanVidhiController.pujanModal.value.bg}')),),
-            //           );
-            //         })
-            //       ],
-            //     ),
-            //   );
-            // }),
+
           Obx((){
             return Align(
 
